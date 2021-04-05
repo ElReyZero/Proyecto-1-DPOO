@@ -48,7 +48,32 @@ public class Estudiante extends Usuario {
 
 				if(prerrequisitos.contains("&"))
 				{
-					
+					int contador=0;
+					int posicion=0;
+					String copiaPrerrequisitos = prerrequisitos;
+					while (posicion != -1)
+					 {
+						contador++;           
+						posicion = copiaPrerrequisitos.indexOf("&", posicion + 1);
+					 }
+					 contador +=1;
+					for(Materia tomada:cursosTomadosSmall)
+					{
+					if(copiaPrerrequisitos.contains(tomada.darCodigo()))
+					{
+						copiaPrerrequisitos.replace(tomada.darCodigo(),"");
+						contador -=1;
+					}
+				}
+					if (contador>0)
+					{
+					}
+					else
+					{
+						materiasSemestre.put(current, nota);
+						cursosTomadosSmall.add(current);
+					}
+
 				}
 				else
 				{
