@@ -1,18 +1,16 @@
 package curriculo;
-
-import java.util.ArrayList;
-
 public class Materia
  {
     private String nombre;
-    private ArrayList<Materia> preRequisitos = new ArrayList<Materia>();
-    private ArrayList<Materia> requisitos = new ArrayList<Materia>();
+    private String preRequisitos;
+    private String requisitos;
     private int creditos;
     private String tipoMateria;
     private boolean semanas16;
     private String codigo;
+    private String nivel;
 
-    public Materia(String pnombre,String pcodigo ArrayList<Materia> ppreRequisitos, ArrayList<Materia> prequisitos, int pcreditos, String ptipoMateria, boolean psemanas16 )
+    public Materia(String pnombre,String pcodigo, String ppreRequisitos, String prequisitos, int pcreditos, String ptipoMateria, String pNivel, boolean psemanas16 )
 
     {
         nombre = pnombre;
@@ -22,6 +20,7 @@ public class Materia
         creditos = pcreditos;
         tipoMateria = ptipoMateria;
         semanas16 = psemanas16;
+        nivel = pNivel;
     }
 
 public String darNombre()
@@ -32,11 +31,11 @@ public String darCodigo()
 {
     return codigo;
 }
-public ArrayList<Materia> darPreRequisitos()
+public String darPreRequisitos()
 {
     return preRequisitos;
 }
-public ArrayList<Materia> darRequisitos()
+public String darRequisitos()
 {
    return requisitos; 
 }
@@ -51,6 +50,11 @@ public String darTipoMateria()
 public boolean darSemanas16()
 {
     return semanas16;
+}
+
+public String darNivel()
+{
+    return nivel;
 }
 
 

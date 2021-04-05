@@ -9,11 +9,11 @@ public class Pensum {
     private ArrayList<Materia> materias;
 
     //constructor
-    public Pensum(Integer pCreditos, String pNombre)
+    public Pensum(Integer pCreditos, String pNombre, ArrayList<Materia> pMaterias)
     {
         creditos = pCreditos;
         nombre = pNombre;
-        materias = new ArrayList<Materia>();
+        materias = pMaterias;
     }
 
     //Métodos

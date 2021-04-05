@@ -1,6 +1,5 @@
 package Sistema;
-
-import java.io.Console;
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +8,9 @@ public class main
 
 	public static void main(String[] args) 
 	{
+		File archivo = new File("./data/curriculoISIS.csv");
+		analizadorArchivo analizador = new analizadorArchivo();
+		analizador.cargarDatos(archivo);
 		Interfaz();
 	}
 
