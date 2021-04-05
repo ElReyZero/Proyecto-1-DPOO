@@ -10,11 +10,13 @@ public class Materia
     private int creditos;
     private String tipoMateria;
     private boolean semanas16;
+    private String codigo;
 
-    public Materia(String pnombre, ArrayList<Materia> ppreRequisitos, ArrayList<Materia> prequisitos, int pcreditos, String ptipoMateria, boolean psemanas16 )
+    public Materia(String pnombre,String pcodigo ArrayList<Materia> ppreRequisitos, ArrayList<Materia> prequisitos, int pcreditos, String ptipoMateria, boolean psemanas16 )
 
     {
         nombre = pnombre;
+        codigo = pcodigo;
         preRequisitos = ppreRequisitos;
         requisitos = prequisitos;
         creditos = pcreditos;
@@ -25,6 +27,10 @@ public class Materia
 public String darNombre()
 {
     return nombre;
+}
+public String darCodigo()
+{
+    return codigo;
 }
 public ArrayList<Materia> darPreRequisitos()
 {
