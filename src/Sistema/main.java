@@ -4,13 +4,12 @@ import java.io.Console;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class main {
+public class main 
+{
 
 	public static void main(String[] args) 
 	{
-		// TODO Auto-generated method stub
 		Interfaz();
-
 	}
 
 	public static void Interfaz()
@@ -22,7 +21,7 @@ public class main {
  
         while (!salir) {
 			System.out.println("Bienvenido a Banner \n-----------------------");
-			System.out.println("Eliga su tipo de usuario");
+			System.out.println("Elija su tipo de usuario");
  
             System.out.println("1. Estudiante");
             System.out.println("2. Coordinador Académico");
@@ -51,8 +50,15 @@ public class main {
                 sn.next();
             }
         }
- 
+		sn.close();
     }
- 
+	public static void InterfazEstudiante()
+	{
+
+	}
+	public static void InterfazCoordinadorAcademico()
+	{
+
+	}
 }
 
