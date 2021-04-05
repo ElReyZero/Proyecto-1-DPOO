@@ -11,13 +11,81 @@ public class main
 		File archivo = new File("./data/curriculoISIS.csv");
 		analizadorArchivo analizador = new analizadorArchivo();
 		analizador.cargarDatos(archivo);
-		Interfaz();
+		Consola();
 	}
 
-	public static void Interfaz()
+	public static void Consola()
 	{
 
 		Scanner sn = new Scanner(System.in);
+        boolean salir = false;
+        int opcion; 
+
+        while (!salir) {
+			System.out.println("Bienvenido a Banner \n-----------------------");
+			System.out.println("Elija su tipo de usuario");
+ 
+            System.out.println("1. Estudiante");
+            System.out.println("2. Coordinador Académico");
+            System.out.println("3. Salir");
+ 
+            try {
+ 
+                System.out.println("Escribe una de las opciones: ");
+                opcion = sn.nextInt();
+                switch (opcion) {
+                    case 1:
+                    String nombreEstudiante = "";
+                    String codigo = "";
+                    String carrera = "";
+                    System.out.println("\n\n\nBienvenido estudiante \n-----------------------");
+                    System.out.println("Digite su nombre:");
+                    try
+                    {
+                        nombreEstudiante = sn.next();
+                    } catch (InputMismatchException e) 
+                    {
+                        System.out.println("Debes insertar tu nombre");
+                        sn.next();
+                    }
+                    System.out.println("Digite su codigo:");
+                    try
+                    {
+                        codigo = sn.next();
+                    } catch (InputMismatchException e) 
+                    {
+                        System.out.println("Debes insertar tu codigo");
+                        sn.next();
+                    }
+                    System.out.println("Digite su carrera:");
+                    try
+                    {
+                        carrera = sn.next();
+                    } catch (InputMismatchException e) 
+                    {
+                        System.out.println("Debes insertar el nombre de tu carrera");
+                        sn.next();
+                    }
+                        break;
+                    case 2:
+                        System.out.println("Has seleccionado la opcion 2");
+                        break;
+                    case 3:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo números entre 1 y 3");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar un número");
+                sn.next();
+            }
+            
+        }
+    }
+	public static void ConsolaCoordinadorAcademico()
+	{
+        Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; 
  
@@ -52,15 +120,6 @@ public class main
                 sn.next();
             }
         }
-		sn.close();
-    }
-	public static void InterfazEstudiante()
-	{
-
-	}
-	public static void InterfazCoordinadorAcademico()
-	{
-
 	}
 }
 
