@@ -140,7 +140,7 @@ public class Estudiante extends Usuario {
 
 	public void guardarAvance(analizadorArchivo analizador, File archivo) throws FileNotFoundException, UnsupportedEncodingException
 	{
-		analizador.guardarAvanceArchivo(archivo, nombre, codigo, carrera, cursosTomados);
+		analizador.guardarAvanceEstudianteArchivo(archivo, nombre, codigo, carrera, cursosTomados);
 		System.out.println("El archivo fue guardado en: " + archivo.getAbsolutePath());
 	}
 

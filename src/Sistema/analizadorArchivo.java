@@ -72,7 +72,7 @@ public class analizadorArchivo {
 			}
     }
 
-	public void guardarAvanceArchivo(File archivo, String nombre, String codigo, String carrera, ArrayList<MateriaEstudiante> materias) throws FileNotFoundException, UnsupportedEncodingException
+	public void guardarAvanceEstudianteArchivo(File archivo, String nombre, String codigo, String carrera, ArrayList<MateriaEstudiante> materias) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		OutputStream os = new FileOutputStream(archivo);
 		PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
