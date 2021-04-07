@@ -1,5 +1,5 @@
 ﻿Nombre Materia;Código;Prerrequisitos;Correquisitos;Créditos;Nivel;Tipo Materia;16 Semanas
-Cálculo Diferencial;MATE-1201;N/A;N/A;3;1;Curso Obligatorio;true
+Cálculo Diferencial;MATE-1203;N/A;N/A;3;1;Curso Obligatorio;true
 Introducción a la Programación;ISIS-1221;N/A;N/A;3;1;Curso Obligatorio;true
 Introducción a la Ingeniería de Sistemas;ISIS-1001;N/A;N/A;3;1;Curso Obligatorio;true
 Escritura Universitaria 1;LENG-1511|LENG-1621;N/A;N/A;2;1;Req.Español;false

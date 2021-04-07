@@ -1,44 +1,45 @@
 package IdentificadorUsuario;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import Sistema.analizadorArchivo;
 import curriculo.Materia;
 import curriculo.Pensum;
+import funcionalidades.reporteNotas;
 
 public class Estudiante extends Usuario {
 
 	//Atributos
 	private String carrera;
-	private double pga;
+	private Double pga;
 	private ArrayList<HashMap<Materia, Double>> cursosTomadosGrande;
 	private ArrayList<Materia> cursosTomadosSmall;
 	private HashMap<Materia, Double> materiasSemestre;
 	private int Semestre;
+	private Double promedio;
 	
 	//Constructor
 	public Estudiante(String pNombre, String pCodigo, String pCarrera) {
 		super(pNombre, pCodigo);
 		carrera = pCarrera;
 		Semestre = 1;
+		promedio = 0.0;
 		cursosTomadosGrande = new ArrayList<HashMap<Materia, Double>>();
 		cursosTomadosSmall = new ArrayList<Materia>();
 		materiasSemestre = new HashMap<Materia, Double>();
 	}
 
 	//Métodos
-
-	public void darAvance()
-	{
-		//TODO
-	}
-
 	public int registrarMaterias(String codigo, int pSemestre, Double nota, Pensum pensum, Scanner sn)
 	{
 		if(Semestre != pSemestre)
 		{
-			cursosTomadosGrande.add(materiasSemestre);
+			cambiarSemestre();
 			Semestre = pSemestre;
 		}
 		var listaMaterias = pensum.darMateriasPensum();
@@ -146,12 +147,25 @@ public class Estudiante extends Usuario {
 			}
 			else
 			{
+				System.out.println("La materia que ingresaste no fue encontrada.");
 				return 0;
 			}
 			}
 		}
 		return 0;
 		
+	}
+
+	public void cambiarSemestre()
+	{
+		cursosTomadosGrande.add(materiasSemestre);
+		materiasSemestre.clear();
+	}
+
+	public void guardarAvance(analizadorArchivo analizador, File archivo) throws FileNotFoundException, UnsupportedEncodingException
+	{
+		analizador.guardarAvanceArchivo(archivo, nombre, codigo, carrera, cursosTomadosGrande);
+		System.out.println("El archivo fue guardado en: " + archivo.getPath());
 	}
 
 	public Double darPGA()

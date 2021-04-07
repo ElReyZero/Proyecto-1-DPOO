@@ -2,9 +2,16 @@ package Sistema;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import curriculo.Materia;
 import curriculo.Pensum;
 
@@ -61,6 +68,30 @@ public class analizadorArchivo {
 				e.printStackTrace();
 			}
     }
+
+	public void guardarAvanceArchivo(File archivo, String nombre, String codigo, String carrera, ArrayList<HashMap<Materia, Double>> materias) throws FileNotFoundException, UnsupportedEncodingException
+	{
+		OutputStream os = new FileOutputStream(archivo);
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
+		pw.println(nombre);
+		pw.println(codigo);
+		pw.println(carrera);
+		int numSemestre = 1;
+		
+		for (HashMap<Materia, Double> semestre : materias)
+		{	
+			System.out.println(semestre);
+			for(Materia key : semestre.keySet())
+			{
+				Double nota = semestre.get(key);
+				String curso = key.darCodigo();
+				int creditos = key.darCreditos();
+				pw.println(curso + ";" + nota + ";" + creditos + ";" + numSemestre);
+			}
+			numSemestre += 1;			
+		}
+		pw.close();
+	}
 
     public Pensum darPensum()
     {

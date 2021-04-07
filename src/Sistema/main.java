@@ -1,5 +1,7 @@
 package Sistema;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,10 +21,10 @@ public class main
 		analizadorArchivo analizador = new analizadorArchivo();
 		analizador.cargarDatos(archivo);
         Pensum pensum = analizador.darPensum();
-		Consola(pensum);
+		Consola(pensum, analizador);
 	}
 
-	public static void Consola(Pensum pensum)
+	public static void Consola(Pensum pensum, analizadorArchivo analizador)
 	{
 
 		Scanner sn = new Scanner(System.in);
@@ -73,7 +75,7 @@ public class main
                     }
                     Estudiante estudiante = new Estudiante(nombreEstudiante,codigoEstudiante,carrera);
                     System.out.println("Bienvenido " + nombreEstudiante+ "\n-----------------------");
-                    seleccionEstudiante(sn, pensum, estudiante);                       
+                    seleccionEstudiante(sn, pensum, estudiante, analizador);                       
                     case 2:
                     String nombreCoordinador = "";
                     String codigoCoordinador = "";
@@ -123,26 +125,35 @@ public class main
         }
 	
 
-    public static void seleccionEstudiante(Scanner sn, Pensum pensum, Estudiante estudiante)
+    public static void seleccionEstudiante(Scanner sn, Pensum pensum, Estudiante estudiante, analizadorArchivo analizador)
     {
         System.out.println("Seleccione la opción a realizar: ");
         System.out.println("1. Registrar Materias");
-        System.out.println("2. Generar reporte notas");
-        System.out.println("3. Dar candidatura grado");
-        System.out.println("4. Crear planeación");
-        System.out.println("5. Salir");
+        System.out.println("2. Guardar registro de materias en un archivo");
+        System.out.println("3. Generar reporte notas");
+        System.out.println("4. Dar candidatura grado");
+        System.out.println("5. Crear planeación");
+        System.out.println("6. Salir");
         int opcion = sn.nextInt();
         switch (opcion)
         {
             case 1:
-            registrarMateriaEstudiante(sn, estudiante, pensum);     
+            registrarMateriaEstudiante(sn, estudiante, pensum, analizador);     
             case 2:
-            ///reporteNotas.darReporteNotas(estudiante);
+            File archivoMaterias = new File("./data/materias"+estudiante.darCodigo()+".csv");
+            try {
+                estudiante.guardarAvance(analizador, archivoMaterias);
+            } catch (FileNotFoundException | UnsupportedEncodingException e) 
+            {
+                e.printStackTrace();
+            }
             case 3:
-            ///candidaturaGrado.darCandidaturaGrado(estudiante);
+            ///reporteNotas.darReporteNotas(estudiante);
             case 4:
-            ////planeador.crearPlaneacion(estudiante);
+            ///candidaturaGrado.darCandidaturaGrado(estudiante);
             case 5:
+            ////planeador.crearPlaneacion(estudiante);
+            case 6:
             sn.close();
             System.exit(0); 
             }
@@ -175,7 +186,7 @@ public class main
             }
     }
 
-    public static void registrarMateriaEstudiante(Scanner sn, Estudiante estudiante, Pensum pensum)
+    public static void registrarMateriaEstudiante(Scanner sn, Estudiante estudiante, Pensum pensum, analizadorArchivo analizador)
     {
         int semestre = 0;
         Double nota = 0.0;
@@ -214,9 +225,10 @@ public class main
             switch (seguir)
             {
                 case 1:
-                registrarMateriaEstudiante(sn, estudiante, pensum);
+                estudiante.cambiarSemestre();
+                registrarMateriaEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
-                seleccionEstudiante(sn, pensum, estudiante); 
+                seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
 }
