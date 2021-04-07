@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import Sistema.analizadorArchivo;
 import curriculo.Materia;
+import curriculo.MateriaEstudiante;
 import curriculo.Pensum;
 import funcionalidades.reporteNotas;
 
@@ -17,36 +18,25 @@ public class Estudiante extends Usuario {
 	//Atributos
 	private String carrera;
 	private Double pga;
-	private ArrayList<HashMap<Materia, Double>> cursosTomadosGrande;
-	private ArrayList<Materia> cursosTomadosSmall;
-	private HashMap<Materia, Double> materiasSemestre;
+	private ArrayList<MateriaEstudiante> cursosTomados;
 	private int Semestre;
 	
 	//Constructor
 	public Estudiante(String pNombre, String pCodigo, String pCarrera) {
 		super(pNombre, pCodigo);
 		carrera = pCarrera;
-		Semestre = 1;
-		cursosTomadosGrande = new ArrayList<HashMap<Materia, Double>>();
-		cursosTomadosSmall = new ArrayList<Materia>();
-		materiasSemestre = new HashMap<Materia, Double>();
+		cursosTomados = new ArrayList<MateriaEstudiante>();
 	}
 
 	//Métodos
-	public int registrarMaterias(String codigo, int pSemestre, Double nota, Pensum pensum, Scanner sn)
+	public int registrarMaterias(String codigo, int semestre, Double nota, Pensum pensum, Scanner sn)
 	{
-		if(Semestre != pSemestre)
-		{
-			cambiarSemestre();
-			Semestre = pSemestre;
-		}
 		var listaMaterias = pensum.darMateriasPensum();
 		for(Materia current:listaMaterias)
 		{
 			if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
 			{
-				materiasSemestre.put(current, nota);
-				cursosTomadosSmall.add(current);
+				cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 				return 0;
 			}
 			else if(current.darCodigo().contains(codigo))
@@ -56,7 +46,7 @@ public class Estudiante extends Usuario {
 
 				if(!prerrequisitos.get(0).equals("N/A"))
 				{
-					for(Materia tomada:cursosTomadosSmall)
+					for(Materia tomada:cursosTomados)
 					{
 						for(int i = 0; prerrequisitos.size() > i; i++)
 						{
@@ -72,14 +62,13 @@ public class Estudiante extends Usuario {
 					}
 					else
 					{
-						materiasSemestre.put(current, nota);
-						cursosTomadosSmall.add(current);
+						cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 					}
 				}
 				if(!correquisitos.get(0).equals("N/A"))
 				{
 					{
-						for(Materia tomada:cursosTomadosSmall)
+						for(Materia tomada:cursosTomados)
 						{
 							for(int i = 0; correquisitos.size() > i; i++)
 							{
@@ -96,8 +85,7 @@ public class Estudiante extends Usuario {
 						}
 						else
 						{
-							materiasSemestre.put(current, nota);
-							cursosTomadosSmall.add(current);
+							cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 							return 0;
 						}
 					}
@@ -105,26 +93,22 @@ public class Estudiante extends Usuario {
 			if(codigo.contains("CB"))
 			{
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", "0", true);
-				materiasSemestre.put(nuevaMateria, nota);
-				cursosTomadosSmall.add(nuevaMateria);
+				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			}
 			else if (codigo.contains("MBIO") || codigo.contains("QUIM") || codigo.contains("MATE") || codigo.contains("FISI") || codigo.contains("BIOL"))
 			{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", "0", true);
-			materiasSemestre.put(nuevaMateria, nota);
-			cursosTomadosSmall.add(nuevaMateria);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", "0", true);
+				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			}
 			else if(codigo.contains("IBIO")|| codigo.contains("ICYA") || codigo.contains("IELE") || codigo.contains("IIND") || codigo.contains("IMEC") || codigo.contains("IQUI"))
 			{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", "0", true);
-			materiasSemestre.put(nuevaMateria, nota);
-			cursosTomadosSmall.add(nuevaMateria);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", "0", true);
+				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			}
 			else if(codigo.contains("ARTI")|| codigo.contains("BCOM") || codigo.contains("MBIT") || codigo.contains("MSIN") || codigo.contains("MINE") || codigo.contains("ISIS") || codigo.contains("MISO"))
 			{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", "0", true);
-			materiasSemestre.put(nuevaMateria, nota);
-			cursosTomadosSmall.add(nuevaMateria);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", "0", true);
+				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			}				
 			else if (codigo.contains("-"))
 			{
@@ -136,8 +120,7 @@ public class Estudiante extends Usuario {
                 {
                     case 1:
 					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", "0", true);
-					materiasSemestre.put(nuevaMateria, nota);
-					cursosTomadosSmall.add(nuevaMateria);
+					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 					case 2:
 					return 0;
                 }
@@ -154,17 +137,11 @@ public class Estudiante extends Usuario {
 		
 	}
 
-	public void cambiarSemestre()
-	{
-		HashMap<Materia, Double> addedMap = new HashMap<Materia, Double>(materiasSemestre);
-		cursosTomadosGrande.add(addedMap);
-		materiasSemestre.clear();
-	}
 
 	public void guardarAvance(analizadorArchivo analizador, File archivo) throws FileNotFoundException, UnsupportedEncodingException
 	{
-		analizador.guardarAvanceArchivo(archivo, nombre, codigo, carrera, cursosTomadosGrande);
-		System.out.println("El archivo fue guardado en: " + archivo.getPath());
+		analizador.guardarAvanceArchivo(archivo, nombre, codigo, carrera, cursosTomados);
+		System.out.println("El archivo fue guardado en: " + archivo.getAbsolutePath());
 	}
 
 	public Double darPGA()
@@ -172,14 +149,9 @@ public class Estudiante extends Usuario {
 		return pga;
 	}
 
-	public ArrayList<HashMap<Materia, Double>> darCursosTomadosGrande()
+	public ArrayList<MateriaEstudiante> darCursosTomados()
 	{
-		return cursosTomadosGrande;
-	}
-
-	public ArrayList<Materia> darCursosTomadosSmall()
-	{
-		return cursosTomadosSmall;
+		return cursosTomados;
 	}
 
 	public String darCarrera()
@@ -192,8 +164,4 @@ public class Estudiante extends Usuario {
 		return Semestre;
 	}
 
-	public HashMap<Materia, Double> darMateriasSemestre()
-	{
-		return materiasSemestre;
-	}
 }

@@ -228,7 +228,6 @@ public class main
                 case 1:
                 registrarMateriaEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
-                estudiante.cambiarSemestre();
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
