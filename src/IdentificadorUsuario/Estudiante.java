@@ -100,7 +100,7 @@ public class Estudiante extends Usuario {
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", "0", true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 		}
-		else if (codigo.contains("MBIO") || codigo.contains("QUIM") || codigo.contains("MATE") || codigo.contains("FISI") || codigo.contains("BIOL"))
+		else if (codigo.contains("MBIO") || codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
 		{
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", "0", true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
