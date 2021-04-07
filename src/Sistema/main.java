@@ -15,7 +15,7 @@ import funcionalidades.reporteNotas;
 public class main 
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		File archivo = new File("./data/curriculoISIS.csv");
 		analizadorArchivo analizador = new analizadorArchivo();
@@ -143,8 +143,9 @@ public class main
             File archivoMaterias = new File("./data/materias"+estudiante.darCodigo()+".csv");
             try {
                 estudiante.guardarAvance(analizador, archivoMaterias);
-            } catch (FileNotFoundException | UnsupportedEncodingException e) 
-            {
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             case 3:
@@ -225,9 +226,9 @@ public class main
             switch (seguir)
             {
                 case 1:
-                estudiante.cambiarSemestre();
                 registrarMateriaEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
+                estudiante.cambiarSemestre();
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }

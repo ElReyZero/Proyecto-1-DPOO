@@ -21,14 +21,12 @@ public class Estudiante extends Usuario {
 	private ArrayList<Materia> cursosTomadosSmall;
 	private HashMap<Materia, Double> materiasSemestre;
 	private int Semestre;
-	private Double promedio;
 	
 	//Constructor
 	public Estudiante(String pNombre, String pCodigo, String pCarrera) {
 		super(pNombre, pCodigo);
 		carrera = pCarrera;
 		Semestre = 1;
-		promedio = 0.0;
 		cursosTomadosGrande = new ArrayList<HashMap<Materia, Double>>();
 		cursosTomadosSmall = new ArrayList<Materia>();
 		materiasSemestre = new HashMap<Materia, Double>();
@@ -158,7 +156,8 @@ public class Estudiante extends Usuario {
 
 	public void cambiarSemestre()
 	{
-		cursosTomadosGrande.add(materiasSemestre);
+		HashMap<Materia, Double> addedMap = new HashMap<Materia, Double>(materiasSemestre);
+		cursosTomadosGrande.add(addedMap);
 		materiasSemestre.clear();
 	}
 

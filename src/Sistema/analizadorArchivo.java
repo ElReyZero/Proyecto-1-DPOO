@@ -80,7 +80,6 @@ public class analizadorArchivo {
 		
 		for (HashMap<Materia, Double> semestre : materias)
 		{	
-			System.out.println(semestre);
 			for(Materia key : semestre.keySet())
 			{
 				Double nota = semestre.get(key);
