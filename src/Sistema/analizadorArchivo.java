@@ -10,7 +10,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import IdentificadorUsuario.Estudiante;
@@ -34,7 +33,7 @@ public class analizadorArchivo {
                 ArrayList<Materia> listaMaterias = new ArrayList<Materia>();
                 int totalcred = 0;
 				BufferedReader br = new BufferedReader(new FileReader(archivo));
-				String headerline = br.readLine();
+				br.readLine();
                 String linea = br.readLine();
 				while (linea != null)
 				{
@@ -97,9 +96,9 @@ public class analizadorArchivo {
 		try
 			{
 				BufferedReader br = new BufferedReader(new FileReader(archivo));
-				String nameline = br.readLine();
-				String codeline = br.readLine();
-				String majorline = br.readLine();
+				br.readLine();
+				br.readLine();
+				br.readLine();
                 String linea = br.readLine();
 				while (linea != null)
 				{
@@ -107,18 +106,7 @@ public class analizadorArchivo {
 					String codigo = partes[0];
 					Double nota = Double.parseDouble(partes[1]);
                     int semestre = Integer.parseInt(partes[3]);
-                    int casos = estudiante.registrarMaterias(codigo, semestre, nota, pensum, sn);
-
-					if(casos == 1)
-					{
-						System.out.println("Hubo un problema en el registro de la materia " + partes[0]+".\nRevisa que hayas cumplido con correquisitos y prerrequisitos antes de inscribir esta.");
-						linea = null;
-					}
-					else if(casos == 2)
-					{
-						System.out.println("La materia " + partes[0] + "no fue encontrada como materia válida.");
-						linea = null;
-					}
+                    estudiante.registrarMaterias(codigo, semestre, nota, pensum, sn);
 					linea = br.readLine();
 				}
 				br.close();

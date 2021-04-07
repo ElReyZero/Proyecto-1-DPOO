@@ -1,18 +1,10 @@
 package funcionalidades;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.graalvm.compiler.lir.amd64.AMD64ControlFlow.FloatCondSetOp;
-
 import IdentificadorUsuario.Estudiante;
-import curriculo.Materia;
 import curriculo.MateriaEstudiante;
 
 public class reporteNotas 
 {
-    private Double promedio;
-
     public static void darReporteNotas(Estudiante estudiante)
     {
         String Reporte;
@@ -35,14 +27,14 @@ public class reporteNotas
             }
             if(i == semestreActual)
             {
-                reportePorSemestre+="\nSemestre actual ( "+String.valueOf(i)+"):\n\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\n"+ materiasSemestre;
+                reportePorSemestre+="\nSemestre actual ("+String.valueOf(i)+"):\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\n"+ materiasSemestre;
             }
             else
             {
-            reportePorSemestre = "\nSemestre "+String.valueOf(i)+":\n\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\n"+materiasSemestre;
+            reportePorSemestre = "\nSemestre "+String.valueOf(i)+":\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\n"+materiasSemestre;
             }
         }
-        Reporte = "El PGA es:"+promedioPGA(estudiante)+"El estado académico es:"+estadoAcademico(estudiante)+reportePorSemestre;
+        Reporte = "El PGA es:"+promedioPGA(estudiante)+"\nEl estado académico de "+ estudiante.darNombre() + " es: " + estadoAcademico(estudiante)+reportePorSemestre;
         System.out.println(Reporte);
     }
     public static String promedioSemestre(Estudiante estudiante, int semestre)

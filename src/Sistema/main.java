@@ -135,36 +135,56 @@ public class main
         System.out.println("5. Dar candidatura grado");
         System.out.println("6. Crear planeación");
         System.out.println("7. Salir");
-        int opcion = sn.nextInt();
-        switch (opcion)
+        String opcion = String.valueOf(sn.nextInt());
+        System.out.println(opcion);
+        if(opcion.equals("1"))
         {
-            case 1:
             registrarMateriaEstudiante(sn, estudiante, pensum, analizador);  
-            case 2:
+        }
+        else if(opcion.equals("2"))
+        {
             System.out.println("Ingresa la ruta donde se encuentra el archivo: ");
             File avance = new File(sn.next());
             analizador.cargarAvanceEstudiante(avance, estudiante, sn);
-            System.out.println(estudiante.darCursosTomados());
-            case 3:
+            seleccionEstudiante(sn, pensum, estudiante, analizador);
+        }
+            
+        else if(opcion.equals("3"))
+        {
             File archivoMaterias = new File("./data/materias"+estudiante.darCodigo()+".csv");
             try {
-                estudiante.guardarAvance(analizador, archivoMaterias);
-                seleccionEstudiante(sn, pensum, estudiante, analizador);
+               estudiante.guardarAvance(analizador, archivoMaterias);
+               seleccionEstudiante(sn, pensum, estudiante, analizador);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+               e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            case 4:
-            ///reporteNotas.darReporteNotas(estudiante);
-            case 5:
+        }
+        else if(opcion.equals("4"))
+        {
+            reporteNotas.darReporteNotas(estudiante);
+            seleccionEstudiante(sn, pensum, estudiante, analizador);
+        }
+        else if(opcion.equals("5"))
+        {
             ///candidaturaGrado.darCandidaturaGrado(estudiante);
-            case 6:
+        }
+            
+        else if(opcion.equals("6"))
+        {
             ////planeador.crearPlaneacion(estudiante);
-            case 7:
+        }
+        else if(opcion.equals("7"))
+        {
             sn.close();
-            System.exit(0); 
-            }
+            System.exit(0);
+        }
+        else
+        {
+            System.out.println("Debes ingresar una opción válida.");
+            seleccionEstudiante(sn, pensum, estudiante, analizador);
+        }        
     }
     public static void seleccionCoordinadorAcademico(Scanner sn)
     {
@@ -225,7 +245,7 @@ public class main
             e.printStackTrace();
         }       
             
-            int materiaRegistrada = estudiante.registrarMaterias(codigoMateria, semestre, nota, pensum, sn);
+            estudiante.registrarMaterias(codigoMateria, semestre, nota, pensum, sn);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
