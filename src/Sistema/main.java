@@ -6,6 +6,9 @@ import java.util.Scanner;
 import IdentificadorUsuario.CoordinadorAcademico;
 import IdentificadorUsuario.Estudiante;
 import curriculo.Pensum;
+import funcionalidades.candidaturaGrado;
+import funcionalidades.planeador;
+import funcionalidades.reporteNotas;
 
 public class main 
 {
@@ -104,6 +107,7 @@ public class main
                         sn.next();
                     }
                     CoordinadorAcademico coordinador = new CoordinadorAcademico(nombreCoordinador,codigoCoordinador,departamento);
+                    seleccionCoordinadorAcademico(sn);
                         break;
                     case 3:
                         sn.close();
@@ -123,13 +127,49 @@ public class main
     {
         System.out.println("Seleccione la opción a realizar: ");
         System.out.println("1. Registrar Materias");
-        System.out.println("2. Salir");
+        System.out.println("2. Generar reporte notas");
+        System.out.println("3. Dar candidatura grado");
+        System.out.println("4. Crear planeación");
+        System.out.println("5. Salir");
         int opcion = sn.nextInt();
         switch (opcion)
         {
             case 1:
             registrarMateriaEstudiante(sn, estudiante, pensum);     
             case 2:
+            ///reporteNotas.darReporteNotas(estudiante);
+            case 3:
+            ///candidaturaGrado.darCandidaturaGrado(estudiante);
+            case 4:
+            ////planeador.crearPlaneacion(estudiante);
+            case 5:
+            sn.close();
+            System.exit(0); 
+            }
+    }
+    public static void seleccionCoordinadorAcademico(Scanner sn)
+    {
+        System.out.println("\nEscriba el código del estudiante que desea revisar: ");
+        String codigoEstudianteRevisar = sn.next();
+        Estudiante estudiante = CoordinadorAcademico.darEstudiante(codigoEstudianteRevisar);
+        System.out.println("\nSeleccione la opción a realizar: ");
+        System.out.println("1. Revisar avance de estudiante");
+        System.out.println("2. Generar reporte notas");
+        System.out.println("3. Dar candidatura grado");
+        System.out.println("4. Crear planeación");
+        System.out.println("5. Salir");
+        int opcion = sn.nextInt();
+        switch (opcion)
+        {
+            case 1:
+            ///TODO;     
+            case 2:
+            ///reporteNotas.darReporteNotas(estudiante);
+            case 3:
+            ///candidaturaGrado.darCandidaturaGrado(estudiante);
+            case 4:
+            ///planeador.crearPlaneacion(estudiante);
+            case 5:
             sn.close();
             System.exit(0); 
             }

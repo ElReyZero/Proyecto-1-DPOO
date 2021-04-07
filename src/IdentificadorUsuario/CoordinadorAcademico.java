@@ -20,4 +20,8 @@ public class CoordinadorAcademico extends Usuario {
 		return departamento;
 	}
 
+	public static Estudiante darEstudiante(String codigoEstudianteRevisar) {
+		return null;
+	}
+
 }
