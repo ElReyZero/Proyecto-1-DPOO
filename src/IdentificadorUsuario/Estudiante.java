@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import Sistema.analizadorArchivo;
@@ -29,7 +28,7 @@ public class Estudiante extends Usuario {
 	}
 
 	//Métodos
-	public int registrarMaterias(String codigo, int semestre, Double nota, Pensum pensum, Scanner sn)
+	public int registrarMaterias(String codigo, int semestre, double nota, Pensum pensum, Scanner sn)
 	{
 		var listaMaterias = pensum.darMateriasPensum();
 		for(Materia current:listaMaterias)
@@ -59,6 +58,7 @@ public class Estudiante extends Usuario {
 					if (prerrequisitos.size()!= 0)
 					{
 						System.out.println("Se está intentando registrar una materia sin haber cumplido todos los prerrequisitos previamente.\nPrerrequisito(s) sin cumplir:\n" + String.join("\n", prerrequisitos));
+						return 1;
 					}
 					else
 					{
@@ -81,7 +81,7 @@ public class Estudiante extends Usuario {
 						if (correquisitos.size()!= 0)
 						{
 							System.out.println("Se está intentando registrar una materia sin haber inscrito todos los correquisitos previamente.\nCorrequisitos(s) sin inscribir:\n" + String.join("\n", correquisitos));
-							return 0;
+							return 1;
 						}
 						else
 						{
@@ -124,12 +124,12 @@ public class Estudiante extends Usuario {
 					case 2:
 					return 0;
                 }
-				return 1;
+				return 0;
 			}
 			else
 			{
 				System.out.println("La materia que ingresaste no fue encontrada.");
-				return 0;
+				return 2;
 			}
 			}
 		}

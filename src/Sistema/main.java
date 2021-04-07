@@ -19,7 +19,7 @@ public class main
 	{
 		File archivo = new File("./data/curriculoISIS.csv");
 		analizadorArchivo analizador = new analizadorArchivo();
-		analizador.cargarDatos(archivo);
+		analizador.cargarPensum(archivo);
         Pensum pensum = analizador.darPensum();
 		Consola(pensum, analizador);
 	}
@@ -128,33 +128,40 @@ public class main
     public static void seleccionEstudiante(Scanner sn, Pensum pensum, Estudiante estudiante, analizadorArchivo analizador)
     {
         System.out.println("Seleccione la opción a realizar: ");
-        System.out.println("1. Registrar Materias");
-        System.out.println("2. Guardar registro de materias en un archivo");
-        System.out.println("3. Generar reporte notas");
-        System.out.println("4. Dar candidatura grado");
-        System.out.println("5. Crear planeación");
-        System.out.println("6. Salir");
+        System.out.println("1. Registrar Materias Manualmente");
+        System.out.println("2. Registrar Materias desde un archivo");
+        System.out.println("3. Guardar registro de materias en un archivo");
+        System.out.println("4. Generar reporte notas");
+        System.out.println("5. Dar candidatura grado");
+        System.out.println("6. Crear planeación");
+        System.out.println("7. Salir");
         int opcion = sn.nextInt();
         switch (opcion)
         {
             case 1:
-            registrarMateriaEstudiante(sn, estudiante, pensum, analizador);     
+            registrarMateriaEstudiante(sn, estudiante, pensum, analizador);  
             case 2:
+            System.out.println("Ingresa la ruta donde se encuentra el archivo: ");
+            File avance = new File(sn.next());
+            analizador.cargarAvanceEstudiante(avance, estudiante, sn);
+            System.out.println(estudiante.darCursosTomados());
+            case 3:
             File archivoMaterias = new File("./data/materias"+estudiante.darCodigo()+".csv");
             try {
                 estudiante.guardarAvance(analizador, archivoMaterias);
+                seleccionEstudiante(sn, pensum, estudiante, analizador);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            case 3:
-            ///reporteNotas.darReporteNotas(estudiante);
             case 4:
-            ///candidaturaGrado.darCandidaturaGrado(estudiante);
+            ///reporteNotas.darReporteNotas(estudiante);
             case 5:
-            ////planeador.crearPlaneacion(estudiante);
+            ///candidaturaGrado.darCandidaturaGrado(estudiante);
             case 6:
+            ////planeador.crearPlaneacion(estudiante);
+            case 7:
             sn.close();
             System.exit(0); 
             }
