@@ -34,7 +34,7 @@ public class reporteNotas
             reportePorSemestre += "\nSemestre "+String.valueOf(i)+":\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\nLista de materias:\n"+materiasSemestre+"\n";
             }
         }
-        Reporte = "El PGA es:"+promedioPGA(estudiante)+"\nEl estado académico de "+ estudiante.darNombre() + " es: " + estadoAcademico(estudiante)+reportePorSemestre;
+        Reporte = "El PGA es:"+promedioPGA(estudiante)+"\nEl estado académico de "+ estudiante.darNombre() + " es: " + estadoAcademico(estudiante)+"\nEl semestre según creditos es: "+semestreSegunCreditos(estudiante)+reportePorSemestre;
         System.out.println(Reporte);
     }
     public static String promedioSemestre(Estudiante estudiante, int semestre)
@@ -93,6 +93,16 @@ public class reporteNotas
         {
             return "En prueba";
         }
+    }
+    public static String semestreSegunCreditos(Estudiante estudiante)
+    {
+        int creditos = 0;
+        ArrayList<MateriaEstudiante> cursosTomados= estudiante.darCursosTomados();
+        for (MateriaEstudiante curso:cursosTomados)
+        {
+            creditos += curso.darCreditos();
+        }
+        return String.valueOf(creditos/17);
     }
 }
 
