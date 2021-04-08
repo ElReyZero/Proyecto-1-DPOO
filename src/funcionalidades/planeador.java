@@ -1,5 +1,7 @@
 package funcionalidades;
 import java.util.ArrayList;
+
+import IdentificadorUsuario.Estudiante;
 import curriculo.Materia;
 
 public class planeador {
@@ -19,7 +21,7 @@ public class planeador {
 
     //Métodos
 
-    public void crearPlaneacion()
+    public static void crearPlaneacion(Estudiante estudiante)
     {
         //TODO
     }

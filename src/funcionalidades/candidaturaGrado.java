@@ -8,9 +8,9 @@ import curriculo.Pensum;
 
 public class candidaturaGrado {
 
-    private boolean posible;
+    private static boolean posible;
 
-    public boolean darCandidaturaGrado(Estudiante estudiante, Pensum pensum)
+    public static boolean darCandidaturaGrado(Estudiante estudiante, Pensum pensum)
     {
         int creditosPensum = pensum.darCreditosPensum();
         ArrayList<MateriaEstudiante> listacursos = estudiante.darCursosTomados();

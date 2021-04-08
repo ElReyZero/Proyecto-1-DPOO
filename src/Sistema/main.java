@@ -109,7 +109,7 @@ public class main
                         sn.next();
                     }
                     CoordinadorAcademico coordinador = new CoordinadorAcademico(nombreCoordinador,codigoCoordinador,departamento);
-                    seleccionCoordinadorAcademico(sn);
+                    seleccionCoordinadorAcademico(sn, pensum);
                         break;
                     case 3:
                         sn.close();
@@ -168,12 +168,12 @@ public class main
         }
         else if(opcion.equals("5"))
         {
-            ///candidaturaGrado.darCandidaturaGrado(estudiante);
+            candidaturaGrado.darCandidaturaGrado(estudiante,pensum);
         }
             
         else if(opcion.equals("6"))
         {
-            ////planeador.crearPlaneacion(estudiante);
+            planeador.crearPlaneacion(estudiante);
         }
         else if(opcion.equals("7"))
         {
@@ -186,7 +186,7 @@ public class main
             seleccionEstudiante(sn, pensum, estudiante, analizador);
         }        
     }
-    public static void seleccionCoordinadorAcademico(Scanner sn)
+    public static void seleccionCoordinadorAcademico(Scanner sn, Pensum pensum)
     {
         System.out.println("\nEscriba el código del estudiante que desea revisar: ");
         String codigoEstudianteRevisar = sn.next();
@@ -203,11 +203,11 @@ public class main
             case 1:
             ///TODO;     
             case 2:
-            ///reporteNotas.darReporteNotas(estudiante);
+            reporteNotas.darReporteNotas(estudiante);
             case 3:
-            ///candidaturaGrado.darCandidaturaGrado(estudiante);
+            candidaturaGrado.darCandidaturaGrado(estudiante,pensum);
             case 4:
-            ///planeador.crearPlaneacion(estudiante);
+            planeador.crearPlaneacion(estudiante);
             case 5:
             sn.close();
             System.exit(0); 
