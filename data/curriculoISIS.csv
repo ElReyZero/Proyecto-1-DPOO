@@ -11,7 +11,7 @@ Física 1;FISI-1018;N/A;MATE-1203;3;1;Curso Obligatorio;true
 Cálculo Integral y Ecuaciones Diferenciales ;MATE-1214;MATE-1203;N/A;3;1;Curso Obligatorio;true
 Matemática Estrucutral y Lógica;ISIS-1104;ISIS-1204|ISIS-1207|ISIS-1221;N/A;3;1;Curso Obligatorio;true
 Estructuras de Datos y Algorítmos;ISIS-1225;ISIS-1221;N/A;3;1;Curso Obligatorio;true
-Electiva CBU;CBCO-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Electiva CBU;CBCO-XXXX;N/A;N/A;2;0;Electiva CBU CO;true
 Física Experimental 2;FISI-1029;FISI-1019;FISI-1028;1;1;Curso Obligatorio;true
 Física 2;FISI-1028;FISI-1018&MATE-1203;N/A;3;1;Curso Obligatorio;true
 Álgebra Lineal;MATE-1105;MATE-1203;N/A;3;1;Curso Obligatorio;true
@@ -36,13 +36,13 @@ Modelado, Simulación y Optimización;ISIS-3302;ISIS-1226&ISIS-1105&ISIS-1106&II
 Inteligencia de Negocios;ISIS-3301;ISIS-2304&ISIS-2403;N/A;3;3;Curso Obligatorio;true
 Sistemas Empresariales|Programación con Tecnologías Web;ISIS-3425|ISIS-3710;ISIS-2403|ISIS-2503;N/A;3;3;Curso Obligatorio;true
 Infraestructura de Comunicaciones;ISIS-3204;ISIS-2403&ISIS-1304;N/A;3;3;Curso Obligatorio;true
-Electiva CBU;CBPC-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Electiva CBU;CBPC-XXXX;N/A;N/A;2;0;Electiva CBU PC;true
 Electiva Profesional;ISIS-3XXX;N/A;N/A;0;3;Electiva Profesional;true
 Electiva en Química|Electiva en Biología|Electiva en Matemáticas|Electiva en Física;;N/A;N/A;3;0;Electiva en Ciencias;true
 Construcción de Aplicaciones Móviles;ISIS-3510;ISIS-2503/ISIS3204;N/A;3;3;Curso Obligatorio;true
 Curso de Libre Elección;;N/A;N/A;3;0;Curso de Libre Elección;true
 Electiva Profesional;ISIS-3XXX;N/A;N/A;3;3;Electiva Profesional;true
-Electiva CBU;CBCA-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Electiva CBU;CBCA-XXXX;N/A;N/A;2;0;Electiva CBU CA;true
 Curso de Libre Elección;;N/A;N/A;3;0;Curso de Libre Elección;true
 Electiva CBU;CBXX-XXXX;N/A;N/A;2;0;Electiva CBU;true
 Proyecto de Grado;ISIS-3007;ISIS-2403&ISIS-3204;N/A;3;3;Curso Obligatorio;true
