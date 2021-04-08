@@ -56,11 +56,11 @@ public class analizadorArchivo {
 					materiasString += codigo+";";
 					if(currentSubject.darNivel() == 1) 
 					{
-						nivel1 += codigo+";";
+						nivel1 += codigo+"\n";
 					}
 					else if(currentSubject.darNivel() == 2)
 					{
-						nivel2 += codigo + ";";
+						nivel2 += codigo + "\n";
 					} 
 				}
 				br.close();
