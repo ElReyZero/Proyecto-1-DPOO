@@ -1,3 +1,52 @@
 ﻿Nombre Materia;Código;Prerrequisitos;Correquisitos;Créditos;Nivel;Tipo Materia;16 Semanas
+Cálculo Diferencial;MATE-1203;N/A;N/A;3;1;Curso Obligatorio;true
+Introducción a la Programación;ISIS-1221;N/A;N/A;3;1;Curso Obligatorio;true
+Introducción a la Ingeniería de Sistemas;ISIS-1001;N/A;N/A;3;1;Curso Obligatorio;true
 Escritura Universitaria 1;LENG-1511|LENG-1621;N/A;N/A;2;1;Req.Español;false
 Escritura Universitaria 2;LENG-1512|LENG-1622;LENG-1511|LENG-1621;N/A;2;1;Req.Español;false
+Constitución y Democracia;DERE-1300;N/A;N/A;3;1;Curso Obligatorio;true
+Colombia: Espacio, Tiempo, Diferencia;CBCC-1177;N/A;N/A;2;1;Curso Obligatorio;false
+Física Experimental 1 ;FISI-1019;N/A;FISI-1018&MATE-1203;1;1;Curso Obligatorio;true
+Física 1;FISI-1018;N/A;MATE-1203;3;1;Curso Obligatorio;true
+Cálculo Integral y Ecuaciones Diferenciales ;MATE-1214;MATE-1203;N/A;3;1;Curso Obligatorio;true
+Matemática Estrucutral y Lógica;ISIS-1104;ISIS-1204|ISIS-1207|ISIS-1221;N/A;3;1;Curso Obligatorio;true
+Estructuras de Datos y Algorítmos;ISIS-1225;ISIS-1221;N/A;3;1;Curso Obligatorio;true
+Electiva CBU;CBCO-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Física Experimental 2;FISI-1029;FISI-1019;FISI-1028;1;1;Curso Obligatorio;true
+Física 2;FISI-1028;FISI-1018&MATE-1203;N/A;3;1;Curso Obligatorio;true
+Álgebra Lineal;MATE-1105;MATE-1203;N/A;3;1;Curso Obligatorio;true
+Lenguajes y Máquinas;ISIS-1106;ISIS-1104&(ISIS-1205|ISIS-1209|ISIS-1225);LENG-1512|LENG-1622;3;1;Curso Obligatorio;true
+Diseño y Programación Orientada a Objetos;ISIS-1226;ISIS-1225;N/A;3;1;Curso Obligatorio;true
+Requisito Lectura Inglés;LENG-2999;N/A;N/A;0;2;Req. Inglés;true
+Fundamentos de Infraestructura Tecnológica;ISIS-1304;ISIS-1205|ISIS-1209|ISIS-1225;N/A;3;1;Curso Obligatorio;true
+Biología Celular TEO|Química;MBIO-1100|QUIM-1003;N/A;N/A;3;1;Curso Obligatorio;true
+Cálculo Vectorial;MATE-1207;MATE-1105&MATE-1214;N/A;3;1;Curso Obligatorio;true
+Diseño y Análisis de Algoritmos ;ISIS-1105;(ISIS-1104|MATE-1102)&(ISIS-1206|ISIS-1226)&MATE-1105;N/A;3;1;Curso Obligatorio;true
+Sistemas Transaccionales;ISIS-2304;ISIS-1206|ISIS-1226;N/A;3;2;Curso Obligatorio;true
+Desarrollo de SW en Equipo;ISIS-2603;ISIS-1206|ISIS-1226;N/A;3;2;Curso Obligatorio;true
+TI en las Organizaciones;ISIS-1404;ISIS-1204|ISIS-1207|ISIS-1221;N/A;3;1;Curso Obligatorio;true
+Análisis de Decisión e Inversión;IIND-2401;MATE-1105&ISIS-1001;N/A;3;2;Curso Obligatorio;true
+Probabilidad y Estadística;IIND-2106;MATE-1105&MATE-1214;N/A;3;2;Curso Obligatorio;true
+Diseño de Productos e Innovación en TI;ISIS-2007;ISIS-2603&LENG-2999;N/A;3;2;Curso Obligatorio;true
+Arquitectura y Diseño de Software;ISIS-2503;ISIS-2603;N/A;3;2;Curso Obligatorio;true
+Arquitectura Empresarial;ISIS-2403;ISIS-1404;N/A;3;2;Curso Obligatorio;true
+Infraestructura Computacional;ISIS-2203;ISIS-1304;N/A;3;2;Curso Obligatorio;true
+Electiva Regulada otra Ingeniería;ISIS-3XXX;N/A;N/A;3;3;Electiva Ingeniería;true
+Modelado, Simulación y Optimización;ISIS-3302;ISIS-1226&ISIS-1105&ISIS-1106&IIND-2106;N/A;3;3;Curso Obligatorio;true
+Inteligencia de Negocios;ISIS-3301;ISIS-2304&ISIS-2403;N/A;3;3;Curso Obligatorio;true
+Sistemas Empresariales|Programación con Tecnologías Web;ISIS-3425|ISIS-3710;ISIS-2403|ISIS-2503;N/A;3;3;Curso Obligatorio;true
+Infraestructura de Comunicaciones;ISIS-3204;ISIS-2403&ISIS-1304;N/A;3;3;Curso Obligatorio;true
+Electiva CBU;CBPC-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Electiva Profesional;ISIS-3XXX;N/A;N/A;0;3;Electiva Profesional;true
+Electiva en Química|Electiva en Biología|Electiva en Matemáticas|Electiva en Física;;N/A;N/A;3;0;Electiva en Ciencias;true
+Construcción de Aplicaciones Móviles;ISIS-3510;ISIS-2503/ISIS3204;N/A;3;3;Curso Obligatorio;true
+Curso de Libre Elección;;N/A;N/A;3;0;Curso de Libre Elección;true
+Electiva Profesional;ISIS-3XXX;N/A;N/A;3;3;Electiva Profesional;true
+Electiva CBU;CBCA-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Curso de Libre Elección;;N/A;N/A;3;0;Curso de Libre Elección;true
+Electiva CBU;CBXX-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Proyecto de Grado;ISIS-3007;ISIS-2403&ISIS-3204;N/A;3;3;Curso Obligatorio;true
+Electiva Profesional;ISIS-3XXX;N/A;N/A;3;3;Electiva Profesional;true
+Requisito de Idiomas;LENG-3999;N/A;N/A;0;3;Req. Inglés;true
+Electiva CBU;CBXX-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Electiva CBU;CBXX-XXXX;N/A;N/A;2;0;Electiva CBU;true

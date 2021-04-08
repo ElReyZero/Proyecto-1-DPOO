@@ -31,6 +31,7 @@ public class analizadorArchivo {
         try
 			{
                 ArrayList<Materia> listaMaterias = new ArrayList<Materia>();
+				String materiasString = "";
                 int totalcred = 0;
 				BufferedReader br = new BufferedReader(new FileReader(archivo));
 				br.readLine();
@@ -49,10 +50,11 @@ public class analizadorArchivo {
                     boolean semanas = Boolean.parseBoolean(partes[7]);
                     Materia currentSubject = new Materia(nombre, codigo, prerrequisitos, correquisitos, creditos, nivel, tipoMateria, semanas);
                     listaMaterias.add(currentSubject);
-					linea = br.readLine();  
+					linea = br.readLine();
+					materiasString += codigo+";";  
 				}
 				br.close();
-                pensum = new Pensum(totalcred, archivo.getName(), listaMaterias);
+                pensum = new Pensum(totalcred, archivo.getName(), listaMaterias, materiasString);
 			}
 			catch (FileNotFoundException e)
 			{
@@ -100,15 +102,21 @@ public class analizadorArchivo {
 				br.readLine();
 				br.readLine();
                 String linea = br.readLine();
+				int caso = 0;
 				while (linea != null)
 				{
 					String[] partes = linea.split(";");
 					String codigo = partes[0];
 					Double nota = Double.parseDouble(partes[1]);
                     int semestre = Integer.parseInt(partes[3]);
-                    estudiante.registrarMaterias(codigo, semestre, nota, pensum, sn);
+                    caso = estudiante.registrarMaterias(codigo, semestre, nota, pensum, sn);
 					linea = br.readLine();
 				}
+				if(caso == 0)
+				{
+					System.out.println("Materias cargadas satisfactoriamente");
+				}
+				System.out.println();
 				br.close();
 			}
 			catch (FileNotFoundException e)
