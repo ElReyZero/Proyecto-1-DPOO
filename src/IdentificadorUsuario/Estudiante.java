@@ -41,7 +41,17 @@ public class Estudiante extends Usuario {
 				{
 					if (current.darCodigo().contains(codigo) && current.darNivel() >=3)
 					{
-						//TODO
+						if(!tomadosString.contains(pensum.darMateriasNivel1String()))
+						{
+							System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 1");
+						}
+					}
+					if ((current.darCodigo().contains(codigo) && (current.darNivel() == 4| current.darCodigo().equals("ISIS-3007"))))
+					{
+						if(!tomadosString.contains(pensum.darMateriasNivel2String()))
+						{
+							System.out.println("Para poder inscribir "+ codigo + " necesitas haber inscrito todas las materias de nivel 2");
+						}
 					}
 					else if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
 					{
