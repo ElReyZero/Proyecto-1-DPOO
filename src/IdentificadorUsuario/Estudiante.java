@@ -39,7 +39,11 @@ public class Estudiante extends Usuario {
 			{
 				for(Materia current:listaMaterias)
 				{
-					if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
+					if (current.darCodigo().contains(codigo) && current.darNivel() >=3)
+					{
+						//TODO
+					}
+					else if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
 					{
 						cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 						tomadosString += current.darCodigo()+"\n";
@@ -105,28 +109,28 @@ public class Estudiante extends Usuario {
 			}
 		else if(codigo.contains("CB"))
 		{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", "0", true);
+			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			tomadosString += nuevaMateria.darCodigo();
 			return 0;
 		}
 		else if (codigo.contains("MBIO") || codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
 		{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", "0", true);
+			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			tomadosString += nuevaMateria.darCodigo();
 			return 0;
 		}
 		else if(codigo.contains("IBIO")|| codigo.contains("ICYA") || codigo.contains("IELE") || codigo.contains("IIND") || codigo.contains("IMEC") || codigo.contains("IQUI"))
 		{
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", "0", true);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
 				return 0;
 		}
 		else if(codigo.contains("ARTI")|| codigo.contains("BCOM") || codigo.contains("MBIT") || codigo.contains("MSIN") || codigo.contains("MINE") || codigo.contains("ISIS-4") || codigo.contains("MISO"))
 		{
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", "0", true);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", 4, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
 				return 0;
@@ -140,7 +144,7 @@ public class Estudiante extends Usuario {
             switch (opcion)
             {
                 case 1:
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", "0", true);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
 				return 0;
@@ -152,13 +156,13 @@ public class Estudiante extends Usuario {
 	}
 	else if(codigo.contains("CB"))
 		{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", "0", true);
+			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			tomadosString += nuevaMateria.darCodigo();
 		}
 	else if(codigo.contains("ISIS-4"))
 	{
-		Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", "0", true);
+		Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", 0, true);
 		cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 		tomadosString += nuevaMateria.darCodigo();
 	}
