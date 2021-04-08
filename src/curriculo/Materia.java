@@ -10,7 +10,7 @@ public class Materia
     private String codigo;
     private int nivel;
 
-    public Materia(String pnombre,String pcodigo, String ppreRequisitos, String prequisitos, int pcreditos, String ptipoMateria, int pNivel, boolean psemanas16 )
+    public Materia(String pnombre,String pcodigo, String ppreRequisitos, String prequisitos, int pcreditos, String ptipoMateria, int pNivel, boolean psemanas16)
 
     {
         nombre = pnombre;

@@ -8,11 +8,11 @@ public class Pensum {
     private String nombre;
     private ArrayList<Materia> materias;
     private String materiasString;
-    private String nivel1;
-    private String nivel2;
+    private ArrayList<String> nivel1;
+    private ArrayList<String> nivel2;
 
     //constructor
-    public Pensum(Integer pCreditos, String pNombre, ArrayList<Materia> pMaterias, String pMateriasString, String pNivel1, String pNivel2)
+    public Pensum(Integer pCreditos, String pNombre, ArrayList<Materia> pMaterias, String pMateriasString, ArrayList<String> pNivel1, ArrayList<String> pNivel2)
     {
         creditos = pCreditos;
         nombre = pNombre;
@@ -44,12 +44,12 @@ public class Pensum {
         return materiasString;
     }
 
-    public String darMateriasNivel1String()
+    public ArrayList<String> darMateriasNivel1String()
     {
         return nivel1;
     }
 
-    public String darMateriasNivel2String()
+    public ArrayList<String> darMateriasNivel2String()
     {
         return nivel2;
     }

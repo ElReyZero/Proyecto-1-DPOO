@@ -17,6 +17,7 @@ public class Estudiante extends Usuario {
 	private String carrera;
 	private Double pga;
 	private ArrayList<MateriaEstudiante> cursosTomados;
+	private ArrayList<String> cursosTomadosArrayString;
 	private int Semestre;
 	private String tomadosString;
 	
@@ -25,6 +26,7 @@ public class Estudiante extends Usuario {
 		super(pNombre, pCodigo);
 		carrera = pCarrera;
 		cursosTomados = new ArrayList<MateriaEstudiante>();
+		cursosTomadosArrayString = new ArrayList<String>();
 		tomadosString = "-----------------------------------\n";
 	}
 
@@ -41,22 +43,29 @@ public class Estudiante extends Usuario {
 				{
 					if (current.darCodigo().contains(codigo) && current.darNivel() >=3)
 					{
-						if(!tomadosString.contains(pensum.darMateriasNivel1String()))
+						for(int i = 0; pensum.darMateriasNivel1String().size()>i; i++)
 						{
-							System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 1");
-						}
+							if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel1String().get(i)))
+							{
+								System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 1");
+							}
+						}	
 					}
 					if ((current.darCodigo().contains(codigo) && (current.darNivel() == 4| current.darCodigo().equals("ISIS-3007"))))
 					{
-						if(!tomadosString.contains(pensum.darMateriasNivel2String()))
+						for(int i = 0; pensum.darMateriasNivel2String().size()>i; i++)
 						{
-							System.out.println("Para poder inscribir "+ codigo + " necesitas haber inscrito todas las materias de nivel 2");
+							if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel2String().get(i)))
+							{
+								System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 2");
+							}
 						}
 					}
 					else if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
 					{
 						cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 						tomadosString += current.darCodigo()+"\n";
+						cursosTomadosArrayString.add(current.darCodigo());
 						return 0;
 					}
 					else if(current.darCodigo().contains(codigo))
@@ -85,6 +94,7 @@ public class Estudiante extends Usuario {
 							{
 								cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 								tomadosString += current.darCodigo()+"\n";
+								cursosTomadosArrayString.add(current.darCodigo());
 							}
 						}
 						if(!correquisitos.get(0).equals("N/A"))
@@ -110,6 +120,7 @@ public class Estudiante extends Usuario {
 								{
 									cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
 									tomadosString += current.darCodigo()+"\n";
+									cursosTomadosArrayString.add(current.darCodigo());
 									return 0;
 								}
 							}
@@ -122,6 +133,7 @@ public class Estudiante extends Usuario {
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			tomadosString += nuevaMateria.darCodigo();
+			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}
 		else if (codigo.contains("MBIO") || codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
@@ -129,6 +141,7 @@ public class Estudiante extends Usuario {
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			tomadosString += nuevaMateria.darCodigo();
+			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}
 		else if(codigo.contains("IBIO")|| codigo.contains("ICYA") || codigo.contains("IELE") || codigo.contains("IIND") || codigo.contains("IMEC") || codigo.contains("IQUI"))
@@ -136,15 +149,34 @@ public class Estudiante extends Usuario {
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
+				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 				return 0;
 		}
 		else if(codigo.contains("ARTI")|| codigo.contains("BCOM") || codigo.contains("MBIT") || codigo.contains("MSIN") || codigo.contains("MINE") || codigo.contains("ISIS-4") || codigo.contains("MISO"))
 		{
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", 4, true);
-				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-				tomadosString += nuevaMateria.darCodigo();
-				return 0;
-		}				
+			for(int i = 0; pensum.darMateriasNivel1String().size()>i; i++)
+				{
+					if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel1String().get(i)))
+					{
+						System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 1");
+						return 1;
+					}
+				}
+			for(int i = 0; pensum.darMateriasNivel2String().size()>i; i++)
+			{
+				if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel2String().get(i)))
+					{
+						System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 2");
+						return 1;
+					}
+			}
+			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", 4, true);
+			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
+			tomadosString += nuevaMateria.darCodigo();
+			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+			return 0;
+		}
+						
 		else if (codigo.contains("-"))
 		{
 			System.out.println("No se encontró la materia "+ codigo+" en el pensum, ¿estás seguro de que quieres inscribrla como curso de libre elección?");
@@ -157,34 +189,56 @@ public class Estudiante extends Usuario {
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
-				return 0;
+				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+				return 0;				
 				case 2:
 				return 0;
             }
 			return 0;
 		}				
-	}
+	
 	else if(codigo.contains("CB"))
 		{
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 			tomadosString += nuevaMateria.darCodigo();
+			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 		}
-	else if(codigo.contains("ISIS-4"))
-	{
-		Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", 0, true);
-		cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-		tomadosString += nuevaMateria.darCodigo();
-	}
-	else
-	{
-		System.out.println(codigo +" no fue encontrada.");
-		System.out.println(tomadosString);
-		return 2;
-	}
+
+	else if(codigo.contains("ISIS-4XXX"))
+		{
+			for(int i = 0; pensum.darMateriasNivel1String().size()>i; i++)
+				{
+					if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel1String().get(i)))
+					{
+						System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 1");
+						return 1;
+					}
+				}
+			for(int i = 0; pensum.darMateriasNivel2String().size()>i; i++)
+			{
+				if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel2String().get(i)))
+					{
+						System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 2");
+						return 1;
+					}
+			}
+			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva Profesional", 0, true);
+			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
+			tomadosString += nuevaMateria.darCodigo();
+			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+		}
+
+		else
+		{
+			System.out.println(codigo +" no fue encontrada.");
+			System.out.println(tomadosString);
+			return 2;
+		}
 		
-	return 0;
-		
+	
+		}
+		return 0;
 	}
 
 

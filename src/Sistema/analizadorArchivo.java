@@ -32,8 +32,8 @@ public class analizadorArchivo {
 			{
                 ArrayList<Materia> listaMaterias = new ArrayList<Materia>();
 				String materiasString = "";
-				String nivel1 = "";
-				String nivel2 = "";
+				ArrayList<String> nivel1 = new ArrayList<String>();
+				ArrayList<String> nivel2 = new ArrayList<String>();
                 int totalcred = 0;
 				BufferedReader br = new BufferedReader(new FileReader(archivo));
 				br.readLine();
@@ -56,11 +56,11 @@ public class analizadorArchivo {
 					materiasString += codigo+";";
 					if(currentSubject.darNivel() == 1) 
 					{
-						nivel1 += codigo+"\n";
+						nivel1.add(codigo);
 					}
 					else if(currentSubject.darNivel() == 2)
 					{
-						nivel2 += codigo + "\n";
+						nivel2.add(codigo);
 					} 
 				}
 				br.close();
