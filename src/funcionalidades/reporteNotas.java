@@ -23,7 +23,7 @@ public class reporteNotas
             String materiasSemestre="";
             for (String materia:materiasVistasSemestre(estudiante, i))
             {
-                materiasSemestre = "\n"+materia;
+                materiasSemestre = materiasSemestre+"\n"+materia;
             }
             if(i == semestreActual)
             {
@@ -31,7 +31,7 @@ public class reporteNotas
             }
             else
             {
-            reportePorSemestre = "\nSemestre "+String.valueOf(i)+":\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\n"+materiasSemestre;
+            reportePorSemestre += "\nSemestre "+String.valueOf(i)+":\n"+"El promedio del semestre es: "+promedioSemestre(estudiante, i)+ "\n"+materiasSemestre;
             }
         }
         Reporte = "El PGA es:"+promedioPGA(estudiante)+"\nEl estado académico de "+ estudiante.darNombre() + " es: " + estadoAcademico(estudiante)+reportePorSemestre;
