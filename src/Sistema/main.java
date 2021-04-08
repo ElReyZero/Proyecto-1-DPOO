@@ -201,7 +201,7 @@ public class main
         switch (opcion)
         {
             case 1:
-            ///TODO;     
+            CoordinadorAcademico.revisarAvance(estudiante);
             case 2:
             reporteNotas.darReporteNotas(estudiante);
             case 3:

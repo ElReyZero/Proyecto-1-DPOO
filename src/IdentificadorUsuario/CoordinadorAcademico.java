@@ -1,5 +1,9 @@
 package IdentificadorUsuario;
 
+import java.util.ArrayList;
+
+import curriculo.MateriaEstudiante;
+
 public class CoordinadorAcademico extends Usuario {
 	
 	//Atributos
@@ -22,6 +26,20 @@ public class CoordinadorAcademico extends Usuario {
 
 	public static Estudiante darEstudiante(String codigoEstudianteRevisar) {
 		return null;
+	}
+	public static void revisarAvance(Estudiante estudiante)
+	{
+		String avance="";
+		String lineas="";
+		ArrayList<MateriaEstudiante> cursosTomados= estudiante.darCursosTomados();
+        for (MateriaEstudiante curso:cursosTomados)
+        {
+			String linea="";
+			linea = "Materia: "+curso.darCodigo()+" Semestre: "+String.valueOf(curso.darSemestre())+" Nota: "+String.valueOf(curso.darNota())+"\n";
+			lineas +=linea;
+        }
+		avance = "El avance del estudiante: "+estudiante.darNombre()+" es el siguiente:\n"+lineas;
+		System.out.println(avance);
 	}
 
 }
