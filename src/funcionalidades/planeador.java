@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import IdentificadorUsuario.Estudiante;
 import Sistema.analizadorArchivo;
-import Sistema.main;
 import curriculo.Materia;
 import curriculo.MateriaEstudiante;
 import curriculo.Pensum;

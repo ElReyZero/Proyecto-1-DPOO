@@ -173,7 +173,7 @@ public class main
             
         else if(opcion.equals("6"))
         {
-            registrarMateriaPlaneador(sn,estudiante,pensum);
+            registrarMateriaPlaneador(sn,estudiante,pensum, analizador);
         }
         else if(opcion.equals("7"))
         {
