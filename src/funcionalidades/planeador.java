@@ -1,8 +1,13 @@
 package funcionalidades;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import IdentificadorUsuario.Estudiante;
+import Sistema.analizadorArchivo;
+import Sistema.main;
 import curriculo.Materia;
+import curriculo.MateriaEstudiante;
+import curriculo.Pensum;
 
 public class planeador {
     //Atributos
@@ -21,9 +26,16 @@ public class planeador {
 
     //Métodos
 
-    public static void crearPlaneacion(Estudiante estudiante)
+    public static String crearPlaneacion(Estudiante estudiante,Pensum pensum,analizadorArchivo analizador,Scanner sn,String codigoMateria,int semestre,double nota)
     {
-        //TODO
+        Estudiante copia = estudiante;
+        String planString ="";
+        int registro=copia.registrarMaterias(codigoMateria, semestre, nota, pensum, sn);  
+        if(registro==0)
+        {
+            planString =codigoMateria+"\n";
+        }
+        return planString;
     }
 
     public Integer darCreditosPlaneacion()

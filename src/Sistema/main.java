@@ -109,7 +109,7 @@ public class main
                         sn.next();
                     }
                     CoordinadorAcademico coordinador = new CoordinadorAcademico(nombreCoordinador,codigoCoordinador,departamento);
-                    seleccionCoordinadorAcademico(sn, pensum);
+                    seleccionCoordinadorAcademico(sn, pensum,analizador);
                         break;
                     case 3:
                         sn.close();
@@ -173,7 +173,7 @@ public class main
             
         else if(opcion.equals("6"))
         {
-            planeador.crearPlaneacion(estudiante);
+            registrarMateriaPlaneador(sn,estudiante,pensum);
         }
         else if(opcion.equals("7"))
         {
@@ -186,7 +186,7 @@ public class main
             seleccionEstudiante(sn, pensum, estudiante, analizador);
         }        
     }
-    public static void seleccionCoordinadorAcademico(Scanner sn, Pensum pensum)
+    public static void seleccionCoordinadorAcademico(Scanner sn, Pensum pensum,analizadorArchivo analizador)
     {
         System.out.println("\nEscriba el código del estudiante que desea revisar: ");
         String codigoEstudianteRevisar = sn.next();
@@ -207,7 +207,7 @@ public class main
             case 3:
             candidaturaGrado.darCandidaturaGrado(estudiante,pensum);
             case 4:
-            planeador.crearPlaneacion(estudiante);
+            registrarMateriaPlaneador(sn,estudiante,pensum,analizador);
             case 5:
             sn.close();
             System.exit(0); 
@@ -256,6 +256,37 @@ public class main
                 registrarMateriaEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
+        }
+    }
+    public static void registrarMateriaPlaneador(Scanner sn, Estudiante estudiante, Pensum pensum, analizadorArchivo analizador)
+    {
+        String planactual="";
+        int semestre = 0;
+        Double nota = 0.0;
+        System.out.println("Introduce el código de la materia: ");
+        String codigoMateria = sn.next();
+        System.out.println("Introduce el semestre en que viste la materia: ");
+        try
+        {
+            semestre = sn.nextInt();
+        }
+        catch (InputMismatchException e) 
+        {
+        System.out.println("Debes insertar un semestre válido.");
+        sn.next();
+        }   
+        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota);
+            System.out.println("¿Quieres seguir registrando materias?");
+            System.out.println("1. Sí");
+            System.out.println("2. No");
+            int seguir = sn.nextInt();
+            switch (seguir)
+            {
+                case 1:
+                registrarMateriaPlaneador(sn, estudiante, pensum, analizador);
+                case 2:
+                System.out.println("El plan actual es: \n"+planactual);
+                seleccionCoordinadorAcademico(sn, pensum,analizador); 
         }
     }
 }
