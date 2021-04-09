@@ -18,7 +18,6 @@ public class Estudiante extends Usuario {
 	private Double pga;
 	private ArrayList<MateriaEstudiante> cursosTomados;
 	private ArrayList<String> cursosTomadosArrayString;
-	private int Semestre;
 	private String tomadosString;
 	
 	//Constructor
@@ -175,28 +174,7 @@ public class Estudiante extends Usuario {
 			tomadosString += nuevaMateria.darCodigo();
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
-		}
-						
-		else if (codigo.contains("-"))
-		{
-			System.out.println("No se encontró la materia "+ codigo+" en el pensum, ¿estás seguro de que quieres inscribrla como curso de libre elección?");
-			System.out.println("1. Sí");
-            System.out.println("2. No");
-			int opcion = sn.nextInt();
-            switch (opcion)
-            {
-                case 1:
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", 0, true);
-				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-				tomadosString += nuevaMateria.darCodigo();
-				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
-				return 0;				
-				case 2:
-				return 0;
-            }
-			return 0;
 		}				
-	
 	else if(codigo.contains("CB"))
 		{
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
@@ -228,7 +206,25 @@ public class Estudiante extends Usuario {
 			tomadosString += nuevaMateria.darCodigo();
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 		}
-
+		else if (codigo.contains("-"))
+		{
+			System.out.println("No se encontró la materia "+ codigo+" en el pensum, ¿estás seguro de que quieres inscribrla como curso de libre elección?");
+			System.out.println("1. Sí");
+            System.out.println("2. No");
+			int opcion = sn.nextInt();
+            switch (opcion)
+            {
+                case 1:
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", 0, true);
+				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
+				tomadosString += nuevaMateria.darCodigo();
+				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+				return 0;				
+				case 2:
+				return 0;
+            }
+			return 0;
+		}
 		else
 		{
 			System.out.println(codigo +" no fue encontrada.");
@@ -262,10 +258,9 @@ public class Estudiante extends Usuario {
 	{
 		return carrera;
 	}
-
-	public int darSemestre()
+	public ArrayList<String> darCursosTomadosString()
 	{
-		return Semestre;
+		return cursosTomadosArrayString;
 	}
 
 }

@@ -124,7 +124,7 @@ public class analizadorArchivo {
 				}
 				if(caso == 0)
 				{
-					System.out.println("Materias cargadas satisfactoriamente");
+					System.out.println("Materias cargadas satisfactoriamente.");
 				}
 				System.out.println();
 				br.close();
