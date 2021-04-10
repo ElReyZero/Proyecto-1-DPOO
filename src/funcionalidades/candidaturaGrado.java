@@ -53,27 +53,37 @@ public class candidaturaGrado {
             }
         }
 
+        System.out.println("Materias Vistas/Requisitos Cumplidos:\n");
+        for (String codigoMat : tomadosString) 
+        {
+            System.out.println(codigoMat+"\n");
+        }
+
+        if(!faltantes.equals(""))
+        {
+            System.out.println("Para poder graduarse "+estudiante.darNombre()+" necesita cumplir con los siguientes cursos/requisitos: ");
+        }
         if(creditosVistos<creditosPensum)
         {
-            System.out.println("No has visto suficientes créditos para poder ser candidato a grado.");
+            System.out.println("No se han cursado suficientes créditos para poder ser candidato a grado.");
             System.out.println("Créditos vistos: " + creditosVistos);
             System.out.print("Créditos faltantes: "+(creditosPensum-creditosVistos));
         }
-        else if(cantidadCBU < 6)
+        if(cantidadCBU < 6)
         {
-            System.out.println("No has visto suficientes CBUs para ser candidato a grado. Tienes que ver mínimo 6.");
+            System.out.println("No se han cursado suficientes CBUs para ser candidato a grado. Son necesarias mínimo 6.");
             System.out.println("Cantidad de CBU vistas:" + cantidadCBU);
         }
-        else if(cantidadCBCA <1 || cantidadCBCO<1 || cantidadCBPC<1)
+        if(cantidadCBCA <1 || cantidadCBCO<1 || cantidadCBPC<1)
         {
-            System.out.println("No has visto suficientes CBUs de cada tipo.\nMínimo 1 CBCA, 1 CBPC, 1 CBCO");
+            System.out.println("No se han cursado suficientes CBUs de cada tipo.\nMínimo 1 CBCA, 1 CBPC, 1 CBCO");
             System.out.println("Cantidad de CBCA vistas: "+cantidadCBCA);
             System.out.println("Cantidad de CBPC vistas: "+cantidadCBPC);
             System.out.println("Cantidad de CBCO vistas: "+cantidadCBCO);
         }
-        else if(cantidadElectIng<1)
+        if(cantidadElectIng<1)
         {
-            System.out.println("No has visto suficientes electivas en ingeniería. Mínimo 1.");
+            System.out.println("No se han cursado suficientes electivas en ingeniería. Mínimo 1.");
         }
     }
 }
