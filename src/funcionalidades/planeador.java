@@ -24,16 +24,15 @@ public class planeador {
 
     //Métodos
 
-    public static String crearPlaneacion(Estudiante estudiante,Pensum pensum,analizadorArchivo analizador,Scanner sn,String codigoMateria,int semestre,double nota)
+    public static String crearPlaneacion(Estudiante estudiante,Pensum pensum,analizadorArchivo analizador,Scanner sn,String codigoMateria,int semestre,double nota, String plan)
     {
         Estudiante copia = estudiante;
-        String planString ="";
         int registro=copia.registrarMaterias(codigoMateria, semestre, nota, pensum, sn);  
         if(registro==0)
         {
-            planString =codigoMateria+"      "+String.valueOf(semestre)+"\n";
+            plan += codigoMateria+"      "+String.valueOf(semestre)+"\n";
         }
-        return planString;
+        return plan;
     }
 
     public Integer darCreditosPlaneacion()

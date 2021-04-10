@@ -32,6 +32,11 @@ public class Estudiante extends Usuario {
 	//Métodos
 	public int registrarMaterias(String codigo, int semestre, double nota, Pensum pensum, Scanner sn)
 	{
+		if (codigo.length() != 9 || !codigo.contains("-"))
+		{
+			System.out.println("El código de materia "+codigo+" no está escrito en un formato adecuado. Formato: AAAA-XXXX");
+			return 1;
+		}
 		var listaMaterias = pensum.darMateriasPensum();
 		String matString = pensum.darMateriasString();
 		
@@ -135,7 +140,7 @@ public class Estudiante extends Usuario {
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}
-		else if (codigo.contains("MBIO") || codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
+		else if (codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
 		{
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", 0, true);
 			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));

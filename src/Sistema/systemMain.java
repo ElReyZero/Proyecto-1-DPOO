@@ -191,7 +191,7 @@ public class systemMain
     public static void seleccionCoordinadorAcademico(Scanner sn, Pensum pensum, CoordinadorAcademico coordinador, analizadorArchivo analizador, File avance)
     {
         System.out.println("\nEscriba el código del estudiante que desea revisar: ");
-        System.out.println("Escriba exit para salir.");
+        System.out.println("Escriba exit para volver al menú anterior.");
         String codigoEstudianteRevisar = sn.next();
         if(codigoEstudianteRevisar.toLowerCase().contains("exit"))
         {
@@ -200,7 +200,7 @@ public class systemMain
         Estudiante estudiante = CoordinadorAcademico.darEstudiante(codigoEstudianteRevisar);
         if(avance == null)
         {
-            System.out.println("Ingresa la ruta donde se encuentra el archivo: ");
+            System.out.println("Ingresa la ruta donde se encuentra el archivo con la información del estudiante: ");
             avance = new File(sn.next());
             analizador.cargarAvanceCoordinador(avance, coordinador, sn);
             estudiante = CoordinadorAcademico.darEstudiante(codigoEstudianteRevisar);
@@ -304,7 +304,7 @@ public class systemMain
         Double nota = 0.0;
         System.out.println("Introduce el código de la materia: ");
         String codigoMateria = sn.next();
-        System.out.println("Introduce el semestre en que fue vista la materia: ");
+        System.out.println("Introduce el semestre en que se verá la materia: ");
         try
         {
             semestre = sn.nextInt();
@@ -314,7 +314,7 @@ public class systemMain
         System.out.println("Debes insertar un semestre válido.");
         sn.next();
         }   
-        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota);
+        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota, planactual);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
@@ -324,7 +324,7 @@ public class systemMain
                 case 1:
                 registrarMateriaPlaneadorEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
-                System.out.println("El plan actual es: \n"+"Materia     Semestre"+planactual);
+                System.out.println("El plan actual es: \n"+"Materia     Semestre\n"+planactual);
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
@@ -336,7 +336,7 @@ public class systemMain
         Double nota = 0.0;
         System.out.println("Introduce el código de la materia: ");
         String codigoMateria = sn.next();
-        System.out.println("Introduce el semestre en que viste la materia: ");
+        System.out.println("Introduce el semestre en que se verá la materia: ");
         try
         {
             semestre = sn.nextInt();
@@ -346,7 +346,7 @@ public class systemMain
         System.out.println("Debes insertar un semestre válido.");
         sn.next();
         }   
-        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota);
+        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn, codigoMateria, semestre, nota, planactual);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
@@ -356,7 +356,7 @@ public class systemMain
                 case 1:
                 registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, archivo);
                 case 2:
-                System.out.println("El plan actual es: \n"+"Materia     Semestre"+planactual);
+                System.out.println("El plan actual es: \n"+"Materia     Semestre\n"+planactual);
                 seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, archivo); 
         }
     }
