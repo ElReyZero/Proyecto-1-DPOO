@@ -31,7 +31,7 @@ public class planeador {
         int registro=copia.registrarMaterias(codigoMateria, semestre, nota, pensum, sn);  
         if(registro==0)
         {
-            planString =codigoMateria+"\n";
+            planString =codigoMateria+"      "+String.valueOf(semestre)+"\n";
         }
         return planString;
     }

@@ -324,7 +324,7 @@ public class systemMain
                 case 1:
                 registrarMateriaPlaneadorEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
-                System.out.println("El plan actual es: \n"+planactual);
+                System.out.println("El plan actual es: \n"+"Materia     Semestre"+planactual);
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
@@ -356,7 +356,7 @@ public class systemMain
                 case 1:
                 registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, archivo);
                 case 2:
-                System.out.println("El plan actual es: \n"+planactual);
+                System.out.println("El plan actual es: \n"+"Materia     Semestre"+planactual);
                 seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, archivo); 
         }
     }
