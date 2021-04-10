@@ -103,5 +103,9 @@ public class candidaturaGrado {
         {
             System.out.println("No se han cursado suficientes cursos tipo épsilon. Mínimo 1.");
         }
+        if(!faltantes.equals(""))
+        {
+            System.out.println(faltantes);
+        }
     }
 }

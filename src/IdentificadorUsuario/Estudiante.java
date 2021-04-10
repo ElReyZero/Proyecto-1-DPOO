@@ -15,7 +15,6 @@ public class Estudiante extends Usuario {
 
 	//Atributos
 	private String carrera;
-	private Double pga;
 	private ArrayList<MateriaEstudiante> cursosTomados;
 	private ArrayList<String> cursosTomadosArrayString;
 	private String tomadosString;
@@ -247,11 +246,6 @@ public class Estudiante extends Usuario {
 	{
 		analizador.guardarAvanceEstudianteArchivo(archivo, nombre, codigo, carrera, cursosTomados);
 		System.out.println("El archivo fue guardado en: " + archivo.getAbsolutePath());
-	}
-
-	public Double darPGA()
-	{
-		return pga;
 	}
 
 	public ArrayList<MateriaEstudiante> darCursosTomados()
