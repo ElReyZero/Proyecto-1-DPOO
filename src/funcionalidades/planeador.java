@@ -5,7 +5,6 @@ import java.util.Scanner;
 import IdentificadorUsuario.Estudiante;
 import Sistema.analizadorArchivo;
 import curriculo.Materia;
-import curriculo.MateriaEstudiante;
 import curriculo.Pensum;
 
 public class planeador {

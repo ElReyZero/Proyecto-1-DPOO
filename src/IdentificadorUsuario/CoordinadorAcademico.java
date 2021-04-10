@@ -8,6 +8,7 @@ public class CoordinadorAcademico extends Usuario {
 	
 	//Atributos
 	private String departamento;
+	private static ArrayList<Estudiante> estudiantes;
 	
 	
 	//Constructor
@@ -15,6 +16,7 @@ public class CoordinadorAcademico extends Usuario {
 	{
 		super(pNombre, pCodigo);
 		departamento = pDepto;
+		estudiantes = new ArrayList<>();
 	}
 
 	//Métodos
@@ -24,8 +26,26 @@ public class CoordinadorAcademico extends Usuario {
 		return departamento;
 	}
 
-	public static Estudiante darEstudiante(String codigoEstudianteRevisar) {
+	public static Estudiante darEstudiante(String codigoEstudianteRevisar) 
+	{
+		
+		for (Estudiante estudiante : estudiantes) 
+		{
+			if(estudiante.darCodigo().equals(codigoEstudianteRevisar))
+			{
+				return estudiante;
+			}
+		}
+		
 		return null;
+	}
+	public void agregarEstudiante(Estudiante estudiante)
+	{
+		estudiantes.add(estudiante);
+	}
+	public ArrayList<Estudiante> darListaEstudiantes()
+	{
+		return estudiantes;
 	}
 	public static void revisarAvance(Estudiante estudiante)
 	{

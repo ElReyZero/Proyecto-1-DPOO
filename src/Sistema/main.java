@@ -75,12 +75,13 @@ public class main
                     }
                     Estudiante estudiante = new Estudiante(nombreEstudiante,codigoEstudiante,carrera);
                     System.out.println("Bienvenido " + nombreEstudiante+ "\n-----------------------");
-                    seleccionEstudiante(sn, pensum, estudiante, analizador);                       
+                    seleccionEstudiante(sn, pensum, estudiante, analizador);      
+                    break;                 
                     case 2:
                     String nombreCoordinador = "";
                     String codigoCoordinador = "";
                     String departamento = "";
-                    System.out.println("\nBienvenido estudiante \n-----------------------");
+                    System.out.println("\nBienvenido coordinador \n-----------------------");
                     System.out.println("Digite su nombre:");
                     try
                     {
@@ -109,11 +110,12 @@ public class main
                         sn.next();
                     }
                     CoordinadorAcademico coordinador = new CoordinadorAcademico(nombreCoordinador,codigoCoordinador,departamento);
-                    seleccionCoordinadorAcademico(sn, pensum,analizador);
-                        break;
+                    seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, null);
+                    break;
                     case 3:
                         sn.close();
                         System.exit(0);
+                        break;
                     default:
                         System.out.println("Solo números entre 1 y 3");
                 }
@@ -173,7 +175,7 @@ public class main
             
         else if(opcion.equals("6"))
         {
-            registrarMateriaPlaneador(sn,estudiante,pensum, analizador);
+            registrarMateriaPlaneadorEstudiante(sn,estudiante,pensum, analizador);
         }
         else if(opcion.equals("7"))
         {
@@ -186,31 +188,68 @@ public class main
             seleccionEstudiante(sn, pensum, estudiante, analizador);
         }        
     }
-    public static void seleccionCoordinadorAcademico(Scanner sn, Pensum pensum,analizadorArchivo analizador)
+    public static void seleccionCoordinadorAcademico(Scanner sn, Pensum pensum, CoordinadorAcademico coordinador, analizadorArchivo analizador, File avance)
     {
         System.out.println("\nEscriba el código del estudiante que desea revisar: ");
+        System.out.println("Escriba exit para salir.");
         String codigoEstudianteRevisar = sn.next();
+        if(codigoEstudianteRevisar.toLowerCase().contains("exit"))
+        {
+            Consola(pensum, analizador);
+        }
         Estudiante estudiante = CoordinadorAcademico.darEstudiante(codigoEstudianteRevisar);
+        if(avance == null)
+        {
+            System.out.println("Ingresa la ruta donde se encuentra el archivo: ");
+            avance = new File(sn.next());
+            analizador.cargarAvanceCoordinador(avance, coordinador, sn);
+            estudiante = CoordinadorAcademico.darEstudiante(codigoEstudianteRevisar);
+        }
+        if(estudiante == null)
+        {
+            System.out.println("Debes cargar la información del estudiante primero.");
+            seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, null);
+        }
         System.out.println("\nSeleccione la opción a realizar: ");
-        System.out.println("1. Revisar avance de estudiante");
-        System.out.println("2. Generar reporte notas");
-        System.out.println("3. Dar candidatura grado");
-        System.out.println("4. Crear planeación");
-        System.out.println("5. Salir");
+        System.out.println("1. Cargar información del estudiante nuevamente.");
+        System.out.println("2. Revisar avance de estudiante");
+        System.out.println("3. Generar reporte notas");
+        System.out.println("4. Dar candidatura grado");
+        System.out.println("5. Crear planeación");
+        System.out.println("6. Cambiar Estudiante.");
+        System.out.println("7. Salir");
         int opcion = sn.nextInt();
         switch (opcion)
         {
             case 1:
-            CoordinadorAcademico.revisarAvance(estudiante);
+            System.out.println("Ingresa la ruta donde se encuentra el archivo: ");
+            File avanceopc = new File(sn.next());
+            analizador.cargarAvanceCoordinador(avanceopc, coordinador, sn);
+            estudiante = CoordinadorAcademico.darEstudiante(codigoEstudianteRevisar);
+            break;
             case 2:
+            CoordinadorAcademico.revisarAvance(estudiante);
+            seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
+            break;
+            case 3: 
             reporteNotas.darReporteNotas(estudiante);
-            case 3:
-            candidaturaGrado.darCandidaturaGrado(estudiante,pensum);
+            seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
+            break;
             case 4:
-            registrarMateriaPlaneador(sn,estudiante,pensum,analizador);
+            candidaturaGrado.darCandidaturaGrado(estudiante,pensum);
+            seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
+            break;
             case 5:
+            registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, avance);
+            seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
+            break;
+            case 6:
+            seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
+            break;
+            case 7:
             sn.close();
             System.exit(0); 
+            break;
             }
     }
 
@@ -258,7 +297,7 @@ public class main
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
-    public static void registrarMateriaPlaneador(Scanner sn, Estudiante estudiante, Pensum pensum, analizadorArchivo analizador)
+    public static void registrarMateriaPlaneadorEstudiante(Scanner sn, Estudiante estudiante, Pensum pensum, analizadorArchivo analizador)
     {
         String planactual="";
         int semestre = 0;
@@ -283,10 +322,42 @@ public class main
             switch (seguir)
             {
                 case 1:
-                registrarMateriaPlaneador(sn, estudiante, pensum, analizador);
+                registrarMateriaPlaneadorEstudiante(sn, estudiante, pensum, analizador);
                 case 2:
                 System.out.println("El plan actual es: \n"+planactual);
-                seleccionCoordinadorAcademico(sn, pensum,analizador); 
+                seleccionEstudiante(sn, pensum, estudiante, analizador); 
+        }
+    }
+
+    public static void registrarMateriaPlaneadorCoordinador(Scanner sn, Estudiante estudiante, CoordinadorAcademico coordinador, Pensum pensum, analizadorArchivo analizador, File archivo)
+    {
+        String planactual="";
+        int semestre = 0;
+        Double nota = 0.0;
+        System.out.println("Introduce el código de la materia: ");
+        String codigoMateria = sn.next();
+        System.out.println("Introduce el semestre en que viste la materia: ");
+        try
+        {
+            semestre = sn.nextInt();
+        }
+        catch (InputMismatchException e) 
+        {
+        System.out.println("Debes insertar un semestre válido.");
+        sn.next();
+        }   
+        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota);
+            System.out.println("¿Quieres seguir registrando materias?");
+            System.out.println("1. Sí");
+            System.out.println("2. No");
+            int seguir = sn.nextInt();
+            switch (seguir)
+            {
+                case 1:
+                registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, archivo);
+                case 2:
+                System.out.println("El plan actual es: \n"+planactual);
+                seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, archivo); 
         }
     }
 }

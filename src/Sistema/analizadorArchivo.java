@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import IdentificadorUsuario.CoordinadorAcademico;
 import IdentificadorUsuario.Estudiante;
 import curriculo.Materia;
 import curriculo.MateriaEstudiante;
@@ -111,6 +112,51 @@ public class analizadorArchivo {
 				br.readLine();
 				br.readLine();
 				br.readLine();
+                String linea = br.readLine();
+				int caso = 0;
+				while (linea != null)
+				{
+					String[] partes = linea.split(";");
+					String codigo = partes[0];
+					Double nota = Double.parseDouble(partes[1]);
+                    int semestre = Integer.parseInt(partes[3]);
+                    caso = estudiante.registrarMaterias(codigo, semestre, nota, pensum, sn);
+					linea = br.readLine();
+				}
+				if(caso == 0)
+				{
+					System.out.println("Materias cargadas satisfactoriamente.");
+				}
+				System.out.println();
+				br.close();
+			}
+			catch (FileNotFoundException e)
+			{
+				System.out.println("No encontré el archivo ...");
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				System.out.println("Error de lectura ...");
+				e.printStackTrace();
+			}
+			catch (NumberFormatException e)
+			{
+				System.out.println("Error en los datos: un número no se pudo convertir a int ...");
+				e.printStackTrace();
+			}
+	}
+
+	public void cargarAvanceCoordinador(File archivo, CoordinadorAcademico coordinador, Scanner sn)
+	{
+		try
+			{
+				BufferedReader br = new BufferedReader(new FileReader(archivo));
+				String nombre = br.readLine();
+				String codigoEst = br.readLine();
+				String carrera = br.readLine();
+				Estudiante estudiante = new Estudiante(nombre.split(";")[0], codigoEst.split(";")[0], carrera.split(";")[0]);
+				coordinador.agregarEstudiante(estudiante);
                 String linea = br.readLine();
 				int caso = 0;
 				while (linea != null)
