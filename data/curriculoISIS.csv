@@ -42,9 +42,9 @@ Electiva en Química|Electiva en Biología|Electiva en Matemáticas|Electiva en 
 Construcción de Aplicaciones Móviles;ISIS-3510;(ISIS-2503|ISIS3204)&LENG-2999&(LENG-1512|LENG-1622);N/A;3;3;Curso Obligatorio;true
 Curso de Libre Elección;;N/A;N/A;3;0;Curso de Libre Elección;true
 Electiva Profesional;ISIS-4XXX;N/A;N/A;3;3;Electiva Profesional;true
-Electiva CBU;CBCA-XXXX;N/A;N/A;2;0;Electiva CBU CA;true
+Electiva CBU;CBCA-XXXX;N/A;N/A;2;0;Electiva CBU CA - Tipo E;true
 Curso de Libre Elección;;N/A;N/A;3;0;Curso de Libre Elección;true
-Electiva CBU;CBXX-XXXX;N/A;N/A;2;0;Electiva CBU;true
+Electiva CBU;CBXX-XXXX;N/A;N/A;2;0;Electiva CBU - Tipo Epsilon;true
 Proyecto de Grado;ISIS-3007;ISIS-2403&ISIS-3204&LENG-2999&(LENG-1512|LENG-1622);N/A;3;3;Curso Obligatorio;true
 Electiva Profesional;ISIS-4XXX;N/A;N/A;3;3;Electiva Profesional;true
 Requisito de Idiomas;LENG-3999;N/A;N/A;0;3;Req. Inglés;true

@@ -20,6 +20,8 @@ public class candidaturaGrado {
         int cantidadCBCA = 0;
         int cantidadCBU = 0;
         int cantidadElectIng = 0;
+        int cantidadTipoE = 0;
+        int cantidadTipoEpsilon = 0;
         for (MateriaEstudiante materia : listacursos) 
         {
             creditosVistos += materia.darCreditos();
@@ -42,6 +44,14 @@ public class candidaturaGrado {
             else if(materia.darTipoMateria().equals("Electiva Ingeniería"))
             {
                 cantidadElectIng +=1;
+            }
+            else if(materia.darTipoMateria().contains("Tipo E"))
+            {
+                cantidadTipoE += 1;
+            }
+            else if(materia.darTipoMateria().contains("Tipo Epsilon"))
+            {
+                cantidadTipoEpsilon += 1;
             }
         }
         for (Materia matGeneral : pensum.darMateriasPensum()) 
@@ -84,6 +94,14 @@ public class candidaturaGrado {
         if(cantidadElectIng<1)
         {
             System.out.println("No se han cursado suficientes electivas en ingeniería. Mínimo 1.");
+        }
+        if(cantidadTipoE < 2)
+        {
+            System.out.println("No se han cursado suficientes cursos Tipo E. Mínimo 2");
+        }
+        if (cantidadTipoEpsilon < 1)
+        {
+            System.out.println("No se han cursado suficientes cursos tipo épsilon. Mínimo 1.");
         }
     }
 }
