@@ -20,7 +20,8 @@ public class Estudiante extends Usuario {
 	private String tomadosString;
 	
 	//Constructor
-	public Estudiante(String pNombre, String pCodigo, String pCarrera) {
+	public Estudiante(String pNombre, String pCodigo, String pCarrera) 
+	{
 		super(pNombre, pCodigo);
 		carrera = pCarrera;
 		cursosTomados = new ArrayList<MateriaEstudiante>();

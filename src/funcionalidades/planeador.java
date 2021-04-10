@@ -1,4 +1,7 @@
 package funcionalidades;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 import IdentificadorUsuario.Estudiante;
@@ -9,7 +12,7 @@ public class planeador {
 
     //Métodos
 
-    public static String crearPlaneacion(Estudiante estudiante,Pensum pensum,analizadorArchivo analizador,Scanner sn,String codigoMateria,int semestre,double nota)
+    public static String crearPlaneacion(Estudiante estudiante,Pensum pensum,Scanner sn,String codigoMateria,int semestre,double nota)
     {
         Estudiante copia = estudiante;
         String plan = "";
@@ -21,5 +24,9 @@ public class planeador {
         return plan;
     }
 
+    public static void guardarPlaneación(String plan, analizadorArchivo analizador, Estudiante estudiante, File archivo) throws FileNotFoundException, UnsupportedEncodingException
+    {
+        analizador.guardarPlaneación(archivo, plan, estudiante);
+    }
 
 }

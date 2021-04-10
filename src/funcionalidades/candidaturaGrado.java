@@ -22,6 +22,7 @@ public class candidaturaGrado {
         int cantidadElectIng = 0;
         int cantidadTipoE = 0;
         int cantidadTipoEpsilon = 0;
+        boolean posible = true;
         for (MateriaEstudiante materia : listacursos) 
         {
             creditosVistos += materia.darCreditos();
@@ -71,21 +72,25 @@ public class candidaturaGrado {
 
         if(!faltantes.equals(""))
         {
+            posible = false;
             System.out.println("Para poder graduarse "+estudiante.darNombre()+" necesita cumplir con los siguientes cursos/requisitos: ");
         }
         if(creditosVistos<creditosPensum)
         {
+            posible = false;
             System.out.println("No se han cursado suficientes créditos para poder ser candidato a grado.");
             System.out.println("Créditos vistos: " + creditosVistos);
             System.out.print("Créditos faltantes: "+(creditosPensum-creditosVistos));
         }
         if(cantidadCBU < 6)
         {
+            posible = false;
             System.out.println("No se han cursado suficientes CBUs para ser candidato a grado. Son necesarias mínimo 6.");
             System.out.println("Cantidad de CBU vistas:" + cantidadCBU);
         }
         if(cantidadCBCA <1 || cantidadCBCO<1 || cantidadCBPC<1)
         {
+            posible = false;
             System.out.println("No se han cursado suficientes CBUs de cada tipo.\nMínimo 1 CBCA, 1 CBPC, 1 CBCO");
             System.out.println("Cantidad de CBCA vistas: "+cantidadCBCA);
             System.out.println("Cantidad de CBPC vistas: "+cantidadCBPC);
@@ -93,19 +98,28 @@ public class candidaturaGrado {
         }
         if(cantidadElectIng<1)
         {
+            posible = false;
             System.out.println("No se han cursado suficientes electivas en ingeniería. Mínimo 1.");
         }
         if(cantidadTipoE < 2)
         {
+            posible = false;
             System.out.println("No se han cursado suficientes cursos Tipo E. Mínimo 2");
         }
         if (cantidadTipoEpsilon < 1)
         {
+            posible = false;
             System.out.println("No se han cursado suficientes cursos tipo épsilon. Mínimo 1.");
         }
         if(!faltantes.equals(""))
         {
+            posible = false;
             System.out.println(faltantes);
+        }
+
+        if(posible == true)
+        {
+            System.out.println(estudiante.darNombre() + " ha cumplido con todos los requisitos y puede ser candidato a grado.");
         }
     }
 }

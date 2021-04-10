@@ -104,6 +104,25 @@ public class analizadorArchivo {
 		pw.close();
 	}
 
+	public void guardarPlaneación(File archivo, String plan, Estudiante estudiante) throws FileNotFoundException, UnsupportedEncodingException
+	{
+		String nombre = estudiante.darNombre();
+		String codigo = estudiante.darCodigo();
+		String carrera = estudiante.darCarrera();
+		OutputStream os = new FileOutputStream(archivo);
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, "UTF-8"));
+		pw.println(nombre);
+		pw.println(codigo);
+		pw.println(carrera);
+		String [] planes = plan.split("\n");
+		
+		for (String materia : planes)
+		{	
+			pw.println(materia);			
+		}
+		pw.close();
+	}
+
 	public void cargarAvanceEstudiante(File archivo, Estudiante estudiante, Scanner sn)
 	{
 		try

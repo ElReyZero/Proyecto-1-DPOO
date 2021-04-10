@@ -313,7 +313,7 @@ public class systemMain
         System.out.println("Debes insertar un semestre válido.");
         sn.next();
         }   
-        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota);
+        planactual += planeador.crearPlaneacion(estudiante, pensum, sn,codigoMateria,semestre,nota);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
@@ -324,6 +324,16 @@ public class systemMain
                 registrarMateriaPlaneadorEstudiante(sn, estudiante, pensum, analizador,planactual);
                 case 2:
                 System.out.println("El plan actual es: \n"+"Materia     Semestre\n"+planactual);
+                System.out.println("Ingresa la ruta para guardar la planeación: ");
+                File planeacion = new File(sn.next());
+                try {
+                    planeador.guardarPlaneación(planactual, analizador, estudiante, planeacion);
+                    System.out.println("La planeación fue guardada en: "+planeacion.getAbsolutePath());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
@@ -344,7 +354,7 @@ public class systemMain
         System.out.println("Debes insertar un semestre válido.");
         sn.next();
         }   
-        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn, codigoMateria, semestre, nota);
+        planactual += planeador.crearPlaneacion(estudiante, pensum, sn, codigoMateria, semestre, nota);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
@@ -355,6 +365,16 @@ public class systemMain
                 registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, archivo,planactual);
                 case 2:
                 System.out.println("El plan actual es: \n"+"Materia     Semestre\n"+planactual);
+                System.out.println("Ingresa la ruta para guardar la planeación: ");
+                File planeacion = new File(sn.next());
+                try {
+                    planeador.guardarPlaneación(planactual, analizador, estudiante, planeacion);
+                    System.out.println("La planeación fue guardada en: "+planeacion.getAbsolutePath());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, archivo); 
         }
     }
