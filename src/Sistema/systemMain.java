@@ -175,7 +175,7 @@ public class systemMain
             
         else if(opcion.equals("6"))
         {
-            registrarMateriaPlaneadorEstudiante(sn,estudiante,pensum, analizador);
+            registrarMateriaPlaneadorEstudiante(sn,estudiante,pensum, analizador,"");
         }
         else if(opcion.equals("7"))
         {
@@ -240,7 +240,7 @@ public class systemMain
             seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
             break;
             case 5:
-            registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, avance);
+            registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, avance,"");
             seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
             break;
             case 6:
@@ -297,9 +297,8 @@ public class systemMain
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
-    public static void registrarMateriaPlaneadorEstudiante(Scanner sn, Estudiante estudiante, Pensum pensum, analizadorArchivo analizador)
+    public static void registrarMateriaPlaneadorEstudiante(Scanner sn, Estudiante estudiante, Pensum pensum, analizadorArchivo analizador,String planactual)
     {
-        String planactual="";
         int semestre = 0;
         Double nota = 0.0;
         System.out.println("Introduce el código de la materia: ");
@@ -314,7 +313,7 @@ public class systemMain
         System.out.println("Debes insertar un semestre válido.");
         sn.next();
         }   
-        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota, planactual);
+        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn,codigoMateria,semestre,nota);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
@@ -322,16 +321,15 @@ public class systemMain
             switch (seguir)
             {
                 case 1:
-                registrarMateriaPlaneadorEstudiante(sn, estudiante, pensum, analizador);
+                registrarMateriaPlaneadorEstudiante(sn, estudiante, pensum, analizador,planactual);
                 case 2:
                 System.out.println("El plan actual es: \n"+"Materia     Semestre\n"+planactual);
                 seleccionEstudiante(sn, pensum, estudiante, analizador); 
         }
     }
 
-    public static void registrarMateriaPlaneadorCoordinador(Scanner sn, Estudiante estudiante, CoordinadorAcademico coordinador, Pensum pensum, analizadorArchivo analizador, File archivo)
+    public static void registrarMateriaPlaneadorCoordinador(Scanner sn, Estudiante estudiante, CoordinadorAcademico coordinador, Pensum pensum, analizadorArchivo analizador, File archivo,String planactual)
     {
-        String planactual="";
         int semestre = 0;
         Double nota = 0.0;
         System.out.println("Introduce el código de la materia: ");
@@ -346,7 +344,7 @@ public class systemMain
         System.out.println("Debes insertar un semestre válido.");
         sn.next();
         }   
-        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn, codigoMateria, semestre, nota, planactual);
+        planactual += planeador.crearPlaneacion(estudiante, pensum, analizador, sn, codigoMateria, semestre, nota);
             System.out.println("¿Quieres seguir registrando materias?");
             System.out.println("1. Sí");
             System.out.println("2. No");
@@ -354,7 +352,7 @@ public class systemMain
             switch (seguir)
             {
                 case 1:
-                registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, archivo);
+                registrarMateriaPlaneadorCoordinador(sn, estudiante, coordinador, pensum, analizador, archivo,planactual);
                 case 2:
                 System.out.println("El plan actual es: \n"+"Materia     Semestre\n"+planactual);
                 seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, archivo); 
