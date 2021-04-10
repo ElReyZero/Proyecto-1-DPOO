@@ -12,7 +12,7 @@ import funcionalidades.candidaturaGrado;
 import funcionalidades.planeador;
 import funcionalidades.reporteNotas;
 
-public class main 
+public class systemMain 
 {
 
 	public static void main(String[] args)
@@ -304,7 +304,7 @@ public class main
         Double nota = 0.0;
         System.out.println("Introduce el código de la materia: ");
         String codigoMateria = sn.next();
-        System.out.println("Introduce el semestre en que viste la materia: ");
+        System.out.println("Introduce el semestre en que fue vista la materia: ");
         try
         {
             semestre = sn.nextInt();
