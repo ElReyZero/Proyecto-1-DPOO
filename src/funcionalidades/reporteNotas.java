@@ -5,7 +5,7 @@ import curriculo.MateriaEstudiante;
 
 public class reporteNotas 
 {
-    public static void darReporteNotas(Estudiante estudiante)
+    public static String darReporteNotas(Estudiante estudiante)
     {
         String Reporte;
         int semestreActual=0;
@@ -35,7 +35,7 @@ public class reporteNotas
             }
         }
         Reporte = "El PGA es:"+promedioPGA(estudiante)+"\nEl estado académico de "+ estudiante.darNombre() + " es: " + estadoAcademico(estudiante)+"\nEl semestre según creditos es: "+semestreSegunCreditos(estudiante)+reportePorSemestre;
-        System.out.println(Reporte);
+        return Reporte;
     }
     public static String promedioSemestre(Estudiante estudiante, int semestre)
     {

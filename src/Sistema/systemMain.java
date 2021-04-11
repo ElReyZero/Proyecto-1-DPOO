@@ -165,7 +165,7 @@ public class systemMain
         }
         else if(opcion.equals("4"))
         {
-            reporteNotas.darReporteNotas(estudiante);
+            System.out.println(reporteNotas.darReporteNotas(estudiante));
             seleccionEstudiante(sn, pensum, estudiante, analizador);
         }
         else if(opcion.equals("5"))
@@ -232,7 +232,7 @@ public class systemMain
             seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
             break;
             case 3: 
-            reporteNotas.darReporteNotas(estudiante);
+            System.out.println(reporteNotas.darReporteNotas(estudiante));
             seleccionCoordinadorAcademico(sn, pensum, coordinador, analizador, avance);
             break;
             case 4:
