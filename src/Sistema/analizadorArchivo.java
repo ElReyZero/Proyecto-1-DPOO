@@ -117,7 +117,7 @@ public class analizadorArchivo {
 		String [] planes = plan.split("\n");
 		
 		for (String materia : planes)
-		{	
+		{	materia = materia.replace("      ", ";");
 			pw.println(materia);			
 		}
 		pw.close();

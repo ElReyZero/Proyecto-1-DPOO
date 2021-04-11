@@ -145,10 +145,18 @@ public class systemMain
         }
         else if(opcion.equals("2"))
         {
+            System.out.println("Escribe exit para salir");
             System.out.println("Ingresa la ruta donde se encuentra el archivo: ");
-            File avance = new File(sn.next());
-            analizador.cargarAvanceEstudiante(avance, estudiante, sn);
-            seleccionEstudiante(sn, pensum, estudiante, analizador);
+            if(sn.next().toLowerCase().contains("exit"))
+            {
+                seleccionEstudiante(sn, pensum, estudiante, analizador);
+            }
+            else
+            {
+                File avance = new File(sn.next());
+                analizador.cargarAvanceEstudiante(avance, estudiante, sn);
+                seleccionEstudiante(sn, pensum, estudiante, analizador);
+            }   
         }
             
         else if(opcion.equals("3"))
