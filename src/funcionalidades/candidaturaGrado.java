@@ -27,18 +27,18 @@ public class candidaturaGrado {
         for (MateriaEstudiante materia : listacursos) 
         {
             creditosVistos += materia.darCreditos();
-            if(materia.darTipoMateria().equals("Electiva CBU"))
+            if(materia.darTipoMateria().contains("Electiva CBU"))
             {
                 cantidadCBU +=1;
-                if(materia.darTipoMateria().equals("Electiva CBU CO"))
+                if(materia.darTipoMateria().contains("Electiva CBU CO"))
                 {
                     cantidadCBCO += 1;
                 }
-                else if(materia.darTipoMateria().equals("Electiva CBU CA"))
+                else if(materia.darTipoMateria().contains("Electiva CBU CA"))
                 {
                     cantidadCBCA += 1;
                 }
-                else if(materia.darTipoMateria().equals("Electiva CBU PC"))
+                else if(materia.darTipoMateria().contains("Electiva CBU PC"))
                 {
                     cantidadCBPC +=1;
                 }
@@ -88,7 +88,7 @@ public class candidaturaGrado {
             posible = false;
             System.out.println("No se han cursado suficientes créditos para poder ser candidato a grado.");
             System.out.println("Créditos vistos: " + creditosVistos);
-            System.out.print("Créditos faltantes: "+(creditosPensum-creditosVistos));
+            System.out.print("Créditos faltantes: "+(creditosPensum-creditosVistos+"\n"));
         }
         if(cantidadCBU < 6)
         {
