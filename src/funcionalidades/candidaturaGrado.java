@@ -27,8 +27,6 @@ public class candidaturaGrado {
         for (MateriaEstudiante materia : listacursos) 
         {
             creditosVistos += materia.darCreditos();
-            System.out.println(materia.darCodigo());
-            System.out.println(materia.darCreditos());
             if(materia.darTipoMateria().contains("Electiva CBU"))
             {
                 cantidadCBU +=1;
