@@ -150,7 +150,7 @@ public class Estudiante extends Usuario {
 				System.out.println("¿El CBU "+ codigo +" es de tipo épsilon? (S/s) para sí, (N/n) para no.");
 				if (sn.next().toLowerCase().equals("s"))
 				{
-					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU - Tipo Epsilon", 0, true);
+					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU" +codigo.charAt(2)+codigo.charAt(3)+" - Tipo Epsilon", 0, true);
 					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 					tomadosString += nuevaMateria.darCodigo();
 					cursosTomadosArrayString.add(nuevaMateria.darCodigo());
