@@ -12,6 +12,9 @@ import funcionalidades.candidaturaGrado;
 import funcionalidades.planeador;
 import funcionalidades.reporteNotas;
 
+///Hecho por: Juan Andrés Romero C - 202013449
+/// Luccas Rojas - 201923052
+
 public class systemMain 
 {
 
