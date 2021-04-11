@@ -22,6 +22,7 @@ public class candidaturaGrado {
         int cantidadElectIng = 0;
         int cantidadTipoE = 0;
         int cantidadTipoEpsilon = 0;
+        int cle = 0;
         boolean posible = true;
         for (MateriaEstudiante materia : listacursos) 
         {
@@ -54,13 +55,20 @@ public class candidaturaGrado {
             {
                 cantidadTipoEpsilon += 1;
             }
+            else if(materia.darTipoMateria().contains("Curso de Libre Elección"))
+            {
+                cle += materia.darCreditos();
+            }
         }
         for (Materia matGeneral : pensum.darMateriasPensum()) 
         {
             String code = matGeneral.darCodigo();
             if(!tomadosString.contains(code))
             {
-                faltantes += code+"\n";
+                if(!code.contains("CB") || !code.equals(""))
+                {
+                    faltantes += code+"\n";
+                }
             }
         }
 
@@ -111,12 +119,16 @@ public class candidaturaGrado {
             posible = false;
             System.out.println("No se han cursado suficientes cursos tipo épsilon. Mínimo 1.");
         }
+        if(cle <6)
+        {
+            posible = false;
+            System.out.println("No han sido cursados suficientes créditos en cursos de libre elección. Mínimo 6 créditos.\nHan sido cursado solamente: "+cle);
+        }
         if(!faltantes.equals(""))
         {
             posible = false;
             System.out.println(faltantes);
         }
-
         if(posible == true)
         {
             System.out.println(estudiante.darNombre() + " ha cumplido con todos los requisitos y puede ser candidato a grado.");

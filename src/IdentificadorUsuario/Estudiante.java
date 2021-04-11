@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Sistema.analizadorArchivo;
@@ -134,11 +135,46 @@ public class Estudiante extends Usuario {
 			}
 		else if(codigo.contains("CB"))
 		{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
-			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-			tomadosString += nuevaMateria.darCodigo();
-			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
-			return 0;
+			System.out.println("¿El CBU "+ codigo +" es de Tipo E?. (S/s) para sí, (N/n) para no.");
+			String seleccion = sn.next();
+			if (seleccion.toLowerCase().equals("s"))
+			{
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU - Tipo E", 0, true);
+				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
+				tomadosString += nuevaMateria.darCodigo();
+				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+				return 0;
+			}
+			else if (seleccion.toLowerCase().equals("n"))
+			{
+				System.out.println("¿El CBU "+ codigo +" es de tipo épsilon? (S/s) para sí, (N/n) para no.");
+				if (sn.next().toLowerCase().equals("s"))
+				{
+					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU - Tipo Epsilon", 0, true);
+					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
+					tomadosString += nuevaMateria.darCodigo();
+					cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+					return 0;
+				}
+				else if(sn.next().toLowerCase().equals("n"))
+				{
+					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
+					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
+					tomadosString += nuevaMateria.darCodigo();
+					cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+					return 0;
+				}
+				else
+				{
+					System.out.println("Ha introducido una respuesta inválida.");
+					registrarMaterias(codigo, semestre, nota, pensum, sn);
+				}
+			}
+			else
+			{
+				System.out.println("Ha introducido una respuesta inválida.");
+				registrarMaterias(codigo, semestre, nota, pensum, sn);
+			}
 		}
 		else if (codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
 		{
@@ -180,14 +216,6 @@ public class Estudiante extends Usuario {
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}				
-	else if(codigo.contains("CB"))
-		{
-			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
-			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-			tomadosString += nuevaMateria.darCodigo();
-			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
-		}
-
 	else if(codigo.contains("ISIS-4XXX"))
 		{
 			for(int i = 0; pensum.darMateriasNivel1String().size()>i; i++)
@@ -217,10 +245,21 @@ public class Estudiante extends Usuario {
 			System.out.println("1. Sí");
             System.out.println("2. No");
 			int opcion = sn.nextInt();
+			int creds = 0;
             switch (opcion)
             {
                 case 1:
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Curso de Libre Elección", 0, true);
+				System.out.println("¿De cuántos créditos es "+codigo+"?");
+				try
+				{
+					creds = sn.nextInt();
+				}
+				catch (InputMismatchException e) 
+                {
+                    System.out.println("Debes insertar un número");
+                    creds = sn.nextInt();
+                }
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", creds, "Curso de Libre Elección", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
 				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
@@ -229,15 +268,7 @@ public class Estudiante extends Usuario {
 				return 0;
             }
 			return 0;
-		}
-		else
-		{
-			System.out.println(codigo +" no fue encontrada.");
-			System.out.println(tomadosString);
-			return 2;
-		}
-		
-	
+		}	
 		}
 		return 0;
 	}
