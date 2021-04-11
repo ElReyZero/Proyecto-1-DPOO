@@ -135,28 +135,33 @@ public class Estudiante extends Usuario {
 			}
 		else if(codigo.contains("CB"))
 		{
-			System.out.println("¿El CBU "+ codigo +" es de Tipo E?. (S/s) para sí, (N/n) para no.");
+			System.out.println("¿El CBU "+ codigo +" es de Tipo E?");
+			System.out.println("1. Sí");
+			System.out.println("2. No");
 			String seleccion = sn.next();
-			if (seleccion.toLowerCase().equals("s"))
+			if (seleccion.equals("1"))
 			{
-				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU - Tipo E", 0, true);
+				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2,"Electiva CBU " +codigo.charAt(2)+codigo.charAt(3)+" - Tipo E", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 				tomadosString += nuevaMateria.darCodigo();
 				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 				return 0;
 			}
-			else if (seleccion.toLowerCase().equals("n"))
+			else if (seleccion.equals("2"))
 			{
-				System.out.println("¿El CBU "+ codigo +" es de tipo épsilon? (S/s) para sí, (N/n) para no.");
-				if (sn.next().toLowerCase().equals("s"))
+				System.out.println("¿El CBU "+ codigo +" es de tipo épsilon?");
+				System.out.println("1. Sí");
+            	System.out.println("2. No");
+				String op = sn.next();
+				if (op.equals("1"))
 				{
-					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU" +codigo.charAt(2)+codigo.charAt(3)+" - Tipo Epsilon", 0, true);
+					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU " +codigo.charAt(2)+codigo.charAt(3)+" - Tipo Épsilon", 0, true);
 					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
 					tomadosString += nuevaMateria.darCodigo();
 					cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 					return 0;
 				}
-				else if(sn.next().toLowerCase().equals("n"))
+				else if(op.equals("2"))
 				{
 					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
 					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
@@ -216,7 +221,7 @@ public class Estudiante extends Usuario {
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}				
-	else if(codigo.contains("ISIS-4XXX"))
+	else if(codigo.contains("ISIS-4"))
 		{
 			for(int i = 0; pensum.darMateriasNivel1String().size()>i; i++)
 				{

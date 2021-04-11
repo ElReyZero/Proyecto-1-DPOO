@@ -42,16 +42,25 @@ public class candidaturaGrado {
                 {
                     cantidadCBPC +=1;
                 }
+                if(materia.darTipoMateria().contains("Tipo E"))
+                {
+                    cantidadTipoE += 1;
+                }
+                if(materia.darTipoMateria().contains("Tipo Épsilon"))
+                {
+                    cantidadTipoEpsilon += 1;
+                }
+                
             }
             else if(materia.darTipoMateria().equals("Electiva Ingeniería"))
             {
                 cantidadElectIng +=1;
             }
-            else if(materia.darTipoMateria().contains("Tipo E"))
+            if(materia.darTipoMateria().contains("Tipo E"))
             {
                 cantidadTipoE += 1;
             }
-            else if(materia.darTipoMateria().contains("Tipo Epsilon"))
+            if(materia.darTipoMateria().contains("Tipo Épsilon"))
             {
                 cantidadTipoEpsilon += 1;
             }
@@ -65,7 +74,7 @@ public class candidaturaGrado {
             String code = matGeneral.darCodigo();
             if(!tomadosString.contains(code))
             {
-                if(!code.contains("CB") || !code.equals(""))
+                if(!code.contains("CB") && !code.equals(""))
                 {
                     faltantes += code+"\n";
                 }
