@@ -1,14 +1,14 @@
 package curriculo;
 public class Materia
  {
-    private String nombre;
-    private String preRequisitos;
-    private String requisitos;
-    private int creditos;
-    private String tipoMateria;
-    private boolean semanas16;
-    private String codigo;
-    private int nivel;
+    protected String nombre;
+    protected String preRequisitos;
+    protected String requisitos;
+    protected int creditos;
+    protected String tipoMateria;
+    protected boolean semanas16;
+    protected String codigo;
+    protected int nivel;
 
     public Materia(String pnombre,String pcodigo, String ppreRequisitos, String prequisitos, int pcreditos, String ptipoMateria, int pNivel, boolean psemanas16)
 

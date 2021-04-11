@@ -27,6 +27,8 @@ public class candidaturaGrado {
         for (MateriaEstudiante materia : listacursos) 
         {
             creditosVistos += materia.darCreditos();
+            System.out.println(materia.darCodigo());
+            System.out.println(materia.darCreditos());
             if(materia.darTipoMateria().contains("Electiva CBU"))
             {
                 cantidadCBU +=1;
@@ -46,7 +48,7 @@ public class candidaturaGrado {
                 {
                     cantidadTipoE += 1;
                 }
-                if(materia.darTipoMateria().contains("Tipo Épsilon"))
+                if(materia.darTipoMateria().contains("Épsilon"))
                 {
                     cantidadTipoEpsilon += 1;
                 }
@@ -74,7 +76,7 @@ public class candidaturaGrado {
             String code = matGeneral.darCodigo();
             if(!tomadosString.contains(code))
             {
-                if(!code.contains("CB") && !code.equals(""))
+                if(!code.contains("CB") && !code.equals("") && !code.equals("ISIS-4XXX") && !code.equals("ISIS-3XXX"))
                 {
                     faltantes += code+"\n";
                 }
@@ -84,7 +86,7 @@ public class candidaturaGrado {
         System.out.println("Materias Vistas/Requisitos Cumplidos:\n");
         for (String codigoMat : tomadosString) 
         {
-            System.out.println(codigoMat+"\n");
+            System.out.println(codigoMat);
         }
 
         if(!faltantes.equals(""))

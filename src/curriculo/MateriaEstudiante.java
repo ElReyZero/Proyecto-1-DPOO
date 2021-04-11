@@ -21,4 +21,8 @@ public class MateriaEstudiante extends Materia
 	{
 		return semestre;
 	}
+	public void setCredits(int credits)
+	{
+		super.creditos = credits;
+	}
 }

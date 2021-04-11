@@ -40,7 +40,6 @@ public class Estudiante extends Usuario {
 		}
 		var listaMaterias = pensum.darMateriasPensum();
 		String matString = pensum.darMateriasString();
-		
 		if(!tomadosString.contains(codigo))
 		{	if(matString.contains(codigo))
 			{
@@ -53,6 +52,7 @@ public class Estudiante extends Usuario {
 							if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel1String().get(i)))
 							{
 								System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 1");
+								return 1;
 							}
 						}	
 					}
@@ -63,25 +63,28 @@ public class Estudiante extends Usuario {
 							if(!cursosTomadosArrayString.contains(pensum.darMateriasNivel2String().get(i)))
 							{
 								System.out.println("Para poder inscribir " + codigo + " necesitas haber inscrito todas las materias de nivel 2");
+								return 1;
 							}
 						}
 					}
-					else if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
+					if(current.darCodigo().contains(codigo) && current.darPreRequisitos().equals("N/A") && current.darRequisitos().equals("N/A"))
 					{
-						cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
+						MateriaEstudiante agregada = revisarAprobado(current, nota, semestre);
+						cursosTomados.add(agregada);
 						tomadosString += current.darCodigo()+"\n";
 						cursosTomadosArrayString.add(current.darCodigo());
 						return 0;
+						
 					}
 					else if(current.darCodigo().contains(codigo))
 					{
 						ArrayList<String> prerrequisitos = new ArrayList<String> (Arrays.asList(current.darPreRequisitos().split("&")));
 						ArrayList<String> correquisitos = new ArrayList<String> (Arrays.asList(current.darRequisitos().split("&")));
-	
 						if(!prerrequisitos.get(0).equals("N/A"))
 						{
 							for(Materia tomada:cursosTomados)
 							{
+
 								for(int i = 0; prerrequisitos.size() > i; i++)
 								{
 									if(prerrequisitos.get(i).contains(tomada.darCodigo()))
@@ -89,18 +92,17 @@ public class Estudiante extends Usuario {
 										prerrequisitos.remove(i);
 									}
 								}
-						}
+							}	
 							if (prerrequisitos.size()!= 0)
 							{
 								System.out.println("Se está intentando registrar "+ codigo +" sin haber cumplido todos los prerrequisitos previamente.\nPrerrequisito(s) sin cumplir:\n" + String.join("\n", prerrequisitos));
 								return 1;
 							}
-							else
-							{
-								cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
-								tomadosString += current.darCodigo()+"\n";
-								cursosTomadosArrayString.add(current.darCodigo());
-							}
+
+						}
+						else 
+						{
+							prerrequisitos.remove(0);
 						}
 						if(!correquisitos.get(0).equals("N/A"))
 						{
@@ -117,18 +119,23 @@ public class Estudiante extends Usuario {
 							}
 								if (correquisitos.size()!= 0)
 								{
-									System.out.println("Se está intentando registrar "+ codigo +" sin haber inscrito todos los correquisitos previamente.\nCorrequisitos(s) sin inscribir:\n" + String.join("\n", correquisitos));
 									System.out.println(tomadosString);
+									System.out.println("Se está intentando registrar "+ codigo +" sin haber inscrito todos los correquisitos previamente.\nCorrequisitos(s) sin inscribir:\n" + String.join("\n", correquisitos));
 									return 1;
 								}
-								else
-								{
-									cursosTomados.add(new MateriaEstudiante(current, nota, semestre));
-									tomadosString += current.darCodigo()+"\n";
-									cursosTomadosArrayString.add(current.darCodigo());
-									return 0;
-								}
 							}
+						}
+						else
+						{
+							correquisitos.remove(0);
+						}
+						if(correquisitos.size() == 0 && prerrequisitos.size() == 0)
+						{
+							MateriaEstudiante agregada = revisarAprobado(current, nota, semestre);
+							cursosTomados.add(agregada);
+							tomadosString += current.darCodigo()+"\n";
+							cursosTomadosArrayString.add(current.darCodigo());
+							return 0;
 						}
 					}
 				}
@@ -142,8 +149,9 @@ public class Estudiante extends Usuario {
 			if (seleccion.equals("1"))
 			{
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2,"Electiva CBU " +codigo.charAt(2)+codigo.charAt(3)+" - Tipo E", 0, true);
-				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-				tomadosString += nuevaMateria.darCodigo();
+				MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+				cursosTomados.add(agregada);
+				tomadosString += nuevaMateria.darCodigo()+"\n";
 				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 				return 0;
 			}
@@ -156,16 +164,18 @@ public class Estudiante extends Usuario {
 				if (op.equals("1"))
 				{
 					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU " +codigo.charAt(2)+codigo.charAt(3)+" - Tipo Épsilon", 0, true);
-					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-					tomadosString += nuevaMateria.darCodigo();
+					MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+					cursosTomados.add(agregada);
+					tomadosString += nuevaMateria.darCodigo()+"\n";
 					cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 					return 0;
 				}
 				else if(op.equals("2"))
 				{
 					Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva CBU", 0, true);
-					cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-					tomadosString += nuevaMateria.darCodigo();
+					MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+					cursosTomados.add(agregada);
+					tomadosString += nuevaMateria.darCodigo()+"\n";
 					cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 					return 0;
 				}
@@ -184,16 +194,18 @@ public class Estudiante extends Usuario {
 		else if (codigo.contains("QUIM-2") || codigo.contains("MATE-2") || codigo.contains("MATE-3")|| codigo.contains("MATE-1107") || codigo.contains("FISI-1038") || codigo.contains("FISI-1048") || codigo.contains("BIOL-3"))
 		{
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva en Ciencias", 0, true);
-			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-			tomadosString += nuevaMateria.darCodigo();
+			MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+			cursosTomados.add(agregada);
+			tomadosString += nuevaMateria.darCodigo()+"\n";
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}
 		else if(codigo.contains("IBIO")|| codigo.contains("ICYA") || codigo.contains("IELE") || codigo.contains("IIND") || codigo.contains("IMEC") || codigo.contains("IQUI"))
 		{
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Ingeniería", 0, true);
-				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-				tomadosString += nuevaMateria.darCodigo();
+				MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+				cursosTomados.add(agregada);
+				tomadosString += nuevaMateria.darCodigo()+"\n";
 				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 				return 0;
 		}
@@ -216,8 +228,9 @@ public class Estudiante extends Usuario {
 					}
 			}
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 3, "Electiva Profesional", 4, true);
-			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-			tomadosString += nuevaMateria.darCodigo();
+			MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+			cursosTomados.add(agregada);
+			tomadosString += nuevaMateria.darCodigo()+"\n";
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
 			return 0;
 		}				
@@ -240,9 +253,11 @@ public class Estudiante extends Usuario {
 					}
 			}
 			Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", 2, "Electiva Profesional", 0, true);
-			cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-			tomadosString += nuevaMateria.darCodigo();
+			MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+			cursosTomados.add(agregada);
+			tomadosString += nuevaMateria.darCodigo()+"\n";
 			cursosTomadosArrayString.add(nuevaMateria.darCodigo());
+			return 0;
 		}
 		else if (codigo.contains("-"))
 		{
@@ -266,20 +281,65 @@ public class Estudiante extends Usuario {
 					registrarMaterias(codigo, semestre, nota, pensum, sn);
                 }
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", creds, "Curso de Libre Elección", 0, true);
-				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
-				tomadosString += nuevaMateria.darCodigo();
+				MateriaEstudiante agregada = revisarAprobado(nuevaMateria, nota, semestre);
+				cursosTomados.add(agregada);
+				tomadosString += nuevaMateria.darCodigo()+"\n";
 				cursosTomadosArrayString.add(nuevaMateria.darCodigo());
-				return 0;				
+				return 0;			
 				case 2:
 				return 0;
             }
 			return 0;
 		}	
 		}
+		for (MateriaEstudiante mat : cursosTomados)
+		{
+			if (mat.darCodigo().contains(codigo))
+			{
+				Double grade = mat.darNota();
+				if (grade<3.0 && nota >=3.0)
+				{
+					int creds = 0;
+					for (Materia mater : pensum.darMateriasPensum())
+					{
+						if(mater.darCodigo().contains(mat.darCodigo()))
+						{
+							creds = mater.darCreditos();
+							break;
+						}
+					}
+					MateriaEstudiante agregada = revisarAprobado(mat, nota, semestre);
+					agregada.setCredits(creds);
+					cursosTomados.add(agregada);
+					tomadosString += agregada.darCodigo()+"\n";
+					cursosTomadosArrayString.add(agregada.darCodigo());
+					return 0;
+				}
+				else
+				{
+					System.out.println("No se puede repetir una materia que no haya sido perdida.");
+					return 1;
+				}
+			}
+		}
 		return 0;
 	}
 
 
+	public MateriaEstudiante revisarAprobado(Materia materia, Double nota, int semestre)
+	{
+		if(nota < 3)
+			{
+				MateriaEstudiante agregada = new MateriaEstudiante(materia, nota, semestre);
+				agregada.setCredits(0);
+				return agregada;
+			}
+		else
+			{
+				MateriaEstudiante agregada = new MateriaEstudiante(materia, nota, semestre);
+				return agregada;
+			}
+	}
 	public void guardarAvance(analizadorArchivo analizador, File archivo) throws FileNotFoundException, UnsupportedEncodingException
 	{
 		analizador.guardarAvanceEstudianteArchivo(archivo, nombre, codigo, carrera, cursosTomados);

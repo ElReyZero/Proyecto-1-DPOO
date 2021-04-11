@@ -171,6 +171,7 @@ public class systemMain
         else if(opcion.equals("5"))
         {
             candidaturaGrado.darCandidaturaGrado(estudiante,pensum);
+            seleccionEstudiante(sn, pensum, estudiante, analizador);
         }
             
         else if(opcion.equals("6"))
