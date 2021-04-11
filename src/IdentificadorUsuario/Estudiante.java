@@ -258,6 +258,7 @@ public class Estudiante extends Usuario {
                 {
                     System.out.println("Debes insertar un número");
                     creds = sn.nextInt();
+					registrarMaterias(codigo, semestre, nota, pensum, sn);
                 }
 				Materia nuevaMateria = new Materia(codigo, codigo, "N/A", "N/A", creds, "Curso de Libre Elección", 0, true);
 				cursosTomados.add(new MateriaEstudiante(nuevaMateria, nota, semestre));
